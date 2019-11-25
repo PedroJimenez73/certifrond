@@ -1,0 +1,35 @@
+.breadcrumb {
+    font-size: 1.5em;
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    width: 100%;
+
+    div {
+        display: inline;
+    }
+
+    span {
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.7);
+        display: inline;
+    }
+
+    span:hover {
+        color:white;
+    }
+
+    span.activo {
+        cursor: initial;
+        color: white;
+    }
+    
+}
+
+@media(max-width: 720px)  {
+
+    .breadcrumb {
+        display: none;
+    }
+
+}

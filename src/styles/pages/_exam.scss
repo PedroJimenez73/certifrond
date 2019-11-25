@@ -1,0 +1,111 @@
+.resumen {
+    @include flex-row(flex-start, flex-start);
+
+    .datos {
+        width: 70%;
+        padding-right: 1em;
+
+        p:nth-child(1) {
+            margin-bottom: 2em;
+        }
+    }
+
+    img {
+        width: 30%;
+    }
+    
+}
+
+
+.features {
+    width: 200px;
+    @include flex-row(space-between, flex-end);
+    font-size: 1.3em;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    span {
+        font-size: 16px;
+        color: $gris-claro-font;
+    }
+}
+
+.stats {
+    width: 100%;
+    
+    p {
+        font-size: 16px;
+        margin-bottom: 0.5em;
+        @include flex-row(space-between, flex-end);
+    }
+}
+
+@media (max-width: 640px) {
+    .resumen {
+        flex-direction: column-reverse;
+
+        .datos {
+            width: 100%;
+            padding-right: 1em;
+    
+            p:nth-child(1) {
+                margin-bottom: 2em;
+            }
+        }
+    
+        img {
+            width: 240px;
+            align-self: center;
+            margin-bottom: 1em;
+        }
+        
+    }
+}
+
+.question {
+    @include flex-row(flex-start, flex-start);
+    width: 100%;
+    margin-bottom: 0.5em;
+
+    span:nth-child(1) {
+        @include flex-row(center, center);
+        border-radius: 30px;
+        background-color: $verde;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 10px;
+        margin-right: 0.5em;
+    }
+
+    span:nth-child(2) {
+        margin: 8px 0;
+    }
+
+}
+
+.answer {
+    padding: 1em;
+    border-radius: 5px;
+    transition: all 400ms ease-in-out;
+    width: 100%;
+
+    label {
+        line-height: 1.5;
+        cursor: pointer;
+    }
+
+    input {
+        cursor: pointer;
+        margin-left: 0.5em;
+        width: 20px;
+    }
+
+    &:hover {
+        background-color: $gris-claro;
+    }
+}
+
+@media (max-width: 540px) {
+    .answer {
+        padding: 0.5em;
+    }
+} 

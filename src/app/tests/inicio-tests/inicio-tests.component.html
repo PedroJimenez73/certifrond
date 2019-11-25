@@ -1,0 +1,20 @@
+<app-breadcrumb></app-breadcrumb>
+<div class="contenedor fondo-gris">
+    <div class="contenido para-friso grid">
+        <div class="card" *ngFor="let exam of exams">
+            <div class="header-card">
+                <h2>{{exam.title}}</h2>
+            </div>
+            <hr>
+            <div class="body-card">
+                <img src="{{exam.pic}}">
+            </div>
+            <div class="footer-card">
+                <button routerLink="exam/{{exam._id}}">
+                    <span *ngIf="exam.production">Acceder</span>
+                    <span *ngIf="!exam.production">Próximamente</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

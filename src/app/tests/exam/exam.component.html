@@ -1,0 +1,37 @@
+<app-breadcrumb></app-breadcrumb>
+<div class="contenedor fondo-gris">
+    <div class="contenido para-friso">
+        <div class="card jumbo">
+            <div class="header-card">
+                <h1>{{exam.title}}</h1>
+            </div>
+            <hr>
+            <div class="body-card">
+                <div class="resumen">
+                    <div class="datos">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ad magnam quibusdam officia doloribus unde excepturi dolorem, nemo voluptas maiores eos adipisci, ipsam ratione similique assumenda aut aliquid totam recusandae?</p>
+                        <p class="features"><span>DURACIÓN </span> {{exam.duration}}'</p> 
+                        <p class="features"><span>Nº PREGUNTAS </span> {{exam.questions.length}}</p> 
+                    </div>
+                    <img src="{{exam.pic}}" alt="">
+                </div>
+            </div>
+            <div class="footer-card">
+                <button (click)="startExam()">Iniciar examen</button>
+            </div>
+        </div>
+        <div class="card side">
+            <div class="header-card">
+                <h1>Stats</h1>
+            </div>
+            <hr>
+            <div class="body-card">
+                <div class="stats">
+                    <p>Nº INTENTOS <span class="badge info">6</span></p> 
+                    <p>RESULTADOS <span class="badge success">4/6</span></p> 
+                    <p>ÚLTIMO INTENTO <span class="badge warning">13/11/19</span></p> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+.card {
+    width: 320px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 0 13px 0 rgba(82,63,105,.05);
+    position: relative;
+
+    .header-card {
+        padding: 1em;
+        @include flex-row(flex-start, center);
+        height: 120px;
+    }
+
+    .body-card {
+        padding: 2em;
+        @include flex-row(center, center);
+        height: 200px;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .footer-card {
+        padding: 1em;
+        height: 80px;
+        @include flex-row(flex-end, center);
+    }
+}
+
+@media (max-width: 540px) {
+    .header-card {
+        padding: 0.5em;
+    }
+
+    .body-card {
+        padding: 0.5em;
+    }
+
+    .footer-card {
+        padding: 0.5em;
+    }
+}
+
+.card.jumbo {
+
+    width: calc(70% - 1em);
+
+    .header-card,
+    .body-card {
+        height: auto;
+    }
+
+}
+
+.card.side {
+
+    width: calc(30% - 1em);
+
+    .header-card,
+    .body-card {
+        height: auto;
+    }
+
+}
+
+.card.questions {
+
+    width: calc(100% - 2em);
+
+    .header-card,
+    .body-card {
+        height: auto;
+    }
+
+    .header-card {
+        padding: 1em;
+        @include flex-row(space-between, center);
+    }
+
+    .body-card {
+        @include flex-column(flex-start, center);
+    }
+
+}
+
+@media (max-width: 960px) {
+    .card.jumbo,
+    .card.side {
+        width: calc(100% - 2em);
+    }
+
+    .card.side {
+        margin-top: 1em;
+    }
+}
+

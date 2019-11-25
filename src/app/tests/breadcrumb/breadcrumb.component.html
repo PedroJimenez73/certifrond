@@ -1,0 +1,6 @@
+<span class="breadcrumb" >
+    <div *ngFor="let ruta of rutas; let i = index">
+        <span *ngIf="i !== (rutas.length - 1)" routerLink="{{ruta.ruta}}">{{ruta.texto}} >&nbsp;</span>
+        <span class="activo" *ngIf="i === (rutas.length - 1)">{{ruta.texto}}</span>
+    </div>
+</span>

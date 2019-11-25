@@ -1,0 +1,20 @@
+@mixin flex-row ($a, $b) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $a;
+  align-items: $b;
+}
+
+@mixin flex-column ($a, $b) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $a;
+  align-items: $b;
+}
+
+@mixin flex($a, $b, $c) {
+    display: flex;
+    flex-direction: $a;
+    justify-content: $b;
+    align-items: $c;
+  }

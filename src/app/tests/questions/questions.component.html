@@ -1,0 +1,23 @@
+<app-breadcrumb></app-breadcrumb>
+<div class="contenedor fondo-gris">
+    <div class="contenido para-friso">
+        <div class="card questions">
+            <div class="header-card">
+                <h1>{{exam.title}}</h1>
+                <button>Salir</button>
+            </div>
+            <hr>
+            <div class="body-card">
+                <div class="question">   
+                    <span>{{('0' + (i + 1)).slice(-2)}}</span><span>{{exam.questions[i].question}}</span>
+                </div>
+                <!-- *ngIf="exam.questions[i].corrects.length > 1" -->
+                <app-multi-answers  [question]="exam.questions[i]"></app-multi-answers>
+            </div>
+            <div class="footer-card">
+                <button class="outline" *ngIf="i !== 0" (click)="setQuestion(-1)">Anterior</button>
+                <button class="outline m-l-small" *ngIf="i !== (exam.questions.length - 1)" (click)="setQuestion(1)">Siguiente</button>
+            </div>
+        </div>
+    </div>
+</div>

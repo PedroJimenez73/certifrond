@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <label formArrayName="answers" *ngFor="let answer of form.controls.answers.controls; let i = index">
+        <input type="checkbox" [formControlName]="i">
+        {{abcAnswers[i]}}.- {{answersData[i]}}
+    </label>
+    
+    <button>submit</button>
+</form>
