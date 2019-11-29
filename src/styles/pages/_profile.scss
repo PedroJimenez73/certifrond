@@ -1,0 +1,46 @@
+.profile {
+    @include flex-row(flex-start, stretch);
+    flex-wrap: wrap;
+
+    form {
+        width: 100%;
+        @include flex-row(flex-start, stretch);
+        flex-wrap: wrap;
+
+        .cuenta {
+            width: 60%;
+            min-width: 360px;
+        }
+    
+        .imagen {
+            width: 40%;
+            @include flex-column(center, center);
+            
+            img {
+                width: 200px;
+                min-width: 200px;
+                height: 200px;
+                min-height: 200px;
+                border: 10px solid $verde;
+                border-radius: 300px;
+            }
+
+            #imagen {
+                visibility: hidden;
+            }
+        
+            label {
+                margin-top: 1em;
+                background-color: $verde;
+                border-radius: 4px;
+                border: 1px solid $verde;
+                font-size: 1em;
+                font-family: $fuente;
+                color: #ffffff;
+                box-shadow: 0 4px 16px 0 rgba(88,103,221,.15);
+                padding: 0.5em 1em;
+                transition: all 400ms ease-in-out;
+            }
+        }
+    }
+}

@@ -1,0 +1,85 @@
+<app-breadcrumb></app-breadcrumb>
+<div class="contenedor fondo-gris">
+    <div class="contenido para-friso">
+        <div class="card jumbo">
+            <div class="header-card">
+                <h1>Mi cuenta</h1>
+            </div>
+            <hr>
+            <div class="body-card profile">
+                <form [formGroup]="profileForm" (ngSubmit)="sendUser()">
+                    <div class="cuenta">
+                        <div class="fila">
+                            <div class="col-100">
+                                <input class="user" type="text" placeholder="Nombre y apellidos" formControlName="nombre" #nombre autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="fila">
+                            <div class="col-100">
+                                <input class="email" type="email" placeholder="Correo electrónico" formControlName="email" autocomplete="off" readonly>
+                            </div>
+                        </div>
+                        <div class="fila">
+                            <div class="col-100">
+                                <input class="password" type="password" placeholder="Contraseña" formControlName="password" autocomplete="off">
+                            </div>
+                        </div>
+                        <!-- <div class="fila">
+                            <div class="col-100">
+                                <input class="password" type="password" placeholder="Repetir contraseña" formControlName="repassword" autocomplete="off">
+                            </div>
+                        </div> -->
+                        <div class="fila">
+                            <div class="col-100">
+                                <input type="text" placeholder="Dirección" formControlName="direccion" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="fila">
+                            <div class="col-33">
+                                <input type="text" placeholder="Código Postal" formControlName="cp" autocomplete="off">
+                            </div>
+                            <div class="col-66">
+                                <input type="text" placeholder="Localidad" formControlName="localidad" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imagen">
+                        <img *ngIf="imageSrc" [src]="imageSrc">
+                        <label for="imagen">Cambiar imagen</label>
+                        <input id="imagen" type="file" ng2FileSelect [uploader]="uploader" (change)="onFileSelected($event)">
+                    </div>
+                    <div class="fila">
+                        <div class="col-100 botones">
+                            <!-- <button type="submit" [disabled]="loginForm.invalid">
+                                <span *ngIf="!waiting">Iniciar sesión</span>
+                                <span *ngIf="waiting" style="display: flex;"><div class="spinner-white"></div> Espere...</span>
+                            </button> -->
+                            <button type="submit" (click)="uploader.uploadAll()">
+                                Guardar cambios
+                            </button>
+                        </div>
+                    </div>
+                    <div *ngIf="message" class="fila">
+                        <div class="message danger" style="width: 100%">{{errores}}</div>
+                    </div>
+                </form>
+            </div>
+            <div class="footer-card">
+
+            </div>
+        </div>
+        <div class="card side">
+            <div class="header-card">
+                <h1>Stats</h1>
+            </div>
+            <hr>
+            <div class="body-card">
+                <div class="stats">
+                    <p>Nº INTENTOS <span class="badge info">6</span></p> 
+                    <p>RESULTADOS <span class="badge success">4/6</span></p> 
+                    <p>ÚLTIMO INTENTO <span class="badge warning">13/11/19</span></p> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

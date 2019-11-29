@@ -14,7 +14,8 @@ export class AuthService {
   token: any;
   nombre: any;
 
-  private loggedIn = new BehaviorSubject<any>({logged: false});
+  private loggedIn = new BehaviorSubject<any>({logged: false, id: ''});
+  id: any;
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
@@ -31,9 +32,10 @@ export class AuthService {
     return this.http.post(this.urlAuth, auth).pipe(
       map( (res: any) => {
         if(res.token !== undefined) {
-          this.loggedIn.next({logged: true});
           this.token = res.token;
           this.nombre = res.nombre;
+          this.id = res.id;
+          this.loggedIn.next({logged: true, id: this.id});
           this.socket = io.connect('http://localhost:3000', {
             forceNew: true
           });

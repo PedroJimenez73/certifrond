@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   urlAuth: 'http://localhost:3000/auth',
   urlUsuarios: 'http://localhost:3000/usuario',
-  urlIntentos: 'http://localhost:3000/intento'
+  urlIntentos: 'http://localhost:3000/intento',
+  urlImagenes: 'http://localhost:3000/imagenes'
 };
 
 /*

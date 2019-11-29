@@ -15,9 +15,24 @@ export class UsuariosService {
   constructor(private http: HttpClient,
               private router: Router) { }
 
+  getUsuario(id) {
+    return this.http.get(this.urlUsuarios + '/' + id).pipe(
+      map( (res: any) => {
+        return res;
+      })
+    );
+  }
+
   postUsuario(usuario) {
-    const url = this.urlUsuarios;
-    return this.http.post(url, usuario).pipe(
+    return this.http.post(this.urlUsuarios, usuario).pipe(
+      map( (res: any) => {
+        return res;
+      })
+    );
+  }
+
+  putUsuario(id, usuario) {
+    return this.http.put(this.urlUsuarios + '/' + id, usuario).pipe(
       map( (res: any) => {
         return res;
       })

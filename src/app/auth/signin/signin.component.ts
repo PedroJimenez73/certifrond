@@ -33,7 +33,7 @@ export class SigninComponent implements OnInit {
     const user = {
       nombre: this.signInForm.get('nombre').value,
       email: this.signInForm.get('email').value,
-      password: this.signInForm.get('password').value,
+      password: this.signInForm.get('password').value
     }
     this.usuariosService.postUsuario(user)
           .subscribe((res:any)=>{

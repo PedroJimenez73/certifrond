@@ -19,6 +19,7 @@ export class NavComponent implements OnInit {
   @ViewChild('burger', {static: false}) burgerRef: ElementRef;
   @ViewChild('menu', {static: false}) menuRef: ElementRef;
   showOverlay = false;
+  id: any;
 
   constructor(
     private authService: AuthService
@@ -27,6 +28,7 @@ export class NavComponent implements OnInit {
           .subscribe(
             (data: any) => {
               this.isLogged = data.logged;
+              this.id = data.id;
             },
             (error:any) => {console.log(error)
           })

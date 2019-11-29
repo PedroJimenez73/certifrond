@@ -4,11 +4,14 @@ import { InicioTestsComponent } from './inicio-tests/inicio-tests.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FileUploadModule } from 'ng2-file-upload';
+
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ExamComponent } from './exam/exam.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { AnswersComponent } from './answers/answers.component';
 import { MultiAnswersComponent } from './multi-answers/multi-answers.component';
+import { PerfilComponent } from './usuarios/perfil/perfil.component';
 
 const routes: Routes = [
   {
@@ -33,7 +36,12 @@ const routes: Routes = [
       {texto:'Certified Exam'}
       ] 
     }
-  }
+  },
+  {
+    path: 'perfil/:id', 
+    component: PerfilComponent,
+    data: {rutas: [{ruta:'/', texto:'Inicio'}, {texto: 'Mi cuenta'}]}
+  },
 ];
 
 @NgModule({
@@ -43,13 +51,15 @@ const routes: Routes = [
     ExamComponent,
     QuestionsComponent,
     AnswersComponent,
-    MultiAnswersComponent
+    MultiAnswersComponent,
+    PerfilComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FileUploadModule
   ]
 })
 export class TestsModule { }
