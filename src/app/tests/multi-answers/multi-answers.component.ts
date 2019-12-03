@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -9,12 +9,15 @@ import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
 })
 export class MultiAnswersComponent implements OnInit, OnChanges {
 
-  @Input() question;
+  @Input() exam;
+  @Input() i;
+  @Output() resultsRes: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup;
   answersData: any = [];
-  results = [];
   abcAnswers = ['A','B','C','D','E','F','G','H','I','J'];
+  multi = false;
+  results = [];
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -27,11 +30,18 @@ export class MultiAnswersComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.answersData = this.question.answers;
-    this.form = this.formBuilder.group({
-      answers: new FormArray([])
-    });
-    this.addCheckboxes();
+    this.answersData = this.exam.questions[this.i].answers;
+    this.multi = this.exam.questions[this.i].multi;
+    if (this.multi) { 
+      this.form = this.formBuilder.group({
+        answers: new FormArray([])
+      });
+      this.addCheckboxes();
+    } else {
+      this.form = this.formBuilder.group({
+        answerRadio: ''
+      })
+    }
   }
 
   addCheckboxes() {
@@ -42,12 +52,17 @@ export class MultiAnswersComponent implements OnInit, OnChanges {
   }
 
   submit() {
-    this.form.value.answers.forEach((input,i) => {
-      if(input){
-        this.results.push(this.abcAnswers[i]);
-      }
-    })
-    console.log(this.results);
+    this.results = []
+    if (this.multi) { 
+      this.form.value.answers.forEach((input,i) => {
+        if(input){
+          this.results.push(this.abcAnswers[i]);
+        }
+      })
+    } else {
+      this.results.push(this.form.get('answerRadio').value);
+    }
+    this.resultsRes.emit({resultAns: this.results, index: this.i});
   }
 
 }

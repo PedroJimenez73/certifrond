@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +17,22 @@ export class LoginComponent implements OnInit {
   waiting = false;
   verMensaje = false;
   errores: string;
+  subscripLogin: Subscription;
+  isLogged = false;
 
   constructor(private fr: FormBuilder,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router) { 
+                this.subscripLogin = this.authService.isLoggedIn
+                .subscribe(
+                  (data: any) => {
+                    this.isLogged = data.logged;
+                    if(this.isLogged) {
+                      this.router.navigate(['/tests']);
+                    }
+                  },
+                  (error:any) => {console.log(error)
+                })              }
 
   ngOnInit() {
     this.loginForm = this.fr.group({

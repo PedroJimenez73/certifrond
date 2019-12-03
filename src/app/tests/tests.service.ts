@@ -22,6 +22,7 @@ export class TestsService {
                 'Run the command /sbin/generate-certificates on the affected host.',
                 'Disconnect the host from vCenter Server and reconnect it.'
             ],
+            multi: false,
             corrects: ['D'],
             section: '',
             feedback: [
@@ -39,6 +40,7 @@ export class TestsService {
                 'vCenter Server, Virtual Machine hardware, VMware tools, ESXi hosts',
                 'ESXi hosts, vCenter Server, Virtual Machine hardware, VMware Tools'
             ],
+            multi: false,
             corrects: ['A'],
             section: '',
             feedback: [
@@ -57,6 +59,7 @@ export class TestsService {
                 'Virtual Volumes',
                 'VMFS'
             ],
+            multi: true,
             corrects: ['C','E'],
             section: '',
             feedback: [
@@ -74,6 +77,7 @@ export class TestsService {
                 'Hardware Independent iSCSI initiator',
                 'Hardware Dependent iSCSI initiator',
             ],
+            multi: false,
             corrects: ['A'],
             section: '',
             feedback: [
@@ -98,6 +102,7 @@ export class TestsService {
                 'Enable vSphere HD admission control on the cluster in which the VM resides.',
                 'Set a 2GB memory limit on the VM.',
             ],
+            multi: false,
             corrects: ['A'],
             section: '',
             feedback: [
@@ -116,6 +121,7 @@ export class TestsService {
                 'Average active memory on each VM over time.',
                 'CPU reservations on each VM.'
             ],
+            multi: true,
             corrects: ['C','F'],
             section: '',
             feedback: [

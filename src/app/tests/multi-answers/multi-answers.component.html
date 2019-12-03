@@ -1,8 +1,16 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
-    <label formArrayName="answers" *ngFor="let answer of form.controls.answers.controls; let i = index">
-        <input type="checkbox" [formControlName]="i">
-        {{abcAnswers[i]}}.- {{answersData[i]}}
-    </label>
+    <div *ngIf="multi">
+        <label  class="answer" formArrayName="answers" *ngFor="let answer of form.controls.answers.controls; let i = index">
+            <input type="checkbox" [formControlName]="i">
+            {{abcAnswers[i]}}.- {{answersData[i]}}
+        </label>
+    </div>
+    <div *ngIf="!multi">
+        <label class="answer" *ngFor="let answer of answersData; let i = index">
+            <input type="radio" name="answerRadio" formControlName="answerRadio" value="{{abcAnswers[i]}}">
+            {{abcAnswers[i]}}.- {{answer}}
+        </label>
+    </div>
     
     <button>submit</button>
 </form>

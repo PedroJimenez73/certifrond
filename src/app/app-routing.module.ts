@@ -4,7 +4,7 @@ import { LandpageComponent } from './landpage/landpage.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { PerfilComponent } from './tests/usuarios/perfil/perfil.component';
-
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   // {path:'', component: LandpageComponent},
@@ -13,7 +13,8 @@ const routes: Routes = [
   {
     path: 'tests', 
     loadChildren: './tests/tests.module#TestsModule',
-    data: {rutas: [{ruta:'/tests', texto:'Inicio'}]}
+    data: {rutas: [{ruta:'/tests', texto:'Inicio'}]},
+    // canActivate: [AuthGuard]
   },
   {path:'**', component: LoginComponent}
 ];

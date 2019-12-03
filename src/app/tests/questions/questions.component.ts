@@ -14,6 +14,7 @@ export class QuestionsComponent implements OnInit {
   intentoId: string;
   exam: any;
   i = 0;
+  results = [];
   
   constructor(private route: ActivatedRoute,
               private testsService: TestsService,
@@ -23,10 +24,18 @@ export class QuestionsComponent implements OnInit {
     this.id = this.route.snapshot.params.id;
     this.intentoId = this.route.snapshot.params.intentoId;
     this.exam = this.testsService.getExam(this.id);
+    this.exam.questions.forEach(element => {
+      this.results.push([]);
+    });
   }
 
   setQuestion(cont) {
       this.i += cont;
+  }
+
+  getResultsRes(event) {
+    this.results[event.index] = event.resultAns;
+    console.log(this.results);
   }
 
 }

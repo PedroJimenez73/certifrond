@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TestsService } from '../tests.service';
+import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-inicio-tests',
@@ -10,7 +11,15 @@ export class InicioTestsComponent implements OnInit {
 
   exams: any
 
-  constructor(private testsService: TestsService) { }
+  constructor(private testsService: TestsService,
+              private router: Router) { 
+    // router.events
+    // .subscribe((event: NavigationStart) => {
+    //   if (event.navigationTrigger === 'popstate') {
+    //     this.router.navigate(['/tests']);
+    //   }
+    // });
+  }
 
   ngOnInit() {
     this.loadExams();

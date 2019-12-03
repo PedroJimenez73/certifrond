@@ -21,16 +21,6 @@
                         </div>
                         <div class="fila">
                             <div class="col-100">
-                                <input class="password" type="password" placeholder="Contraseña" formControlName="password" autocomplete="off">
-                            </div>
-                        </div>
-                        <!-- <div class="fila">
-                            <div class="col-100">
-                                <input class="password" type="password" placeholder="Repetir contraseña" formControlName="repassword" autocomplete="off">
-                            </div>
-                        </div> -->
-                        <div class="fila">
-                            <div class="col-100">
                                 <input type="text" placeholder="Dirección" formControlName="direccion" autocomplete="off">
                             </div>
                         </div>
@@ -44,7 +34,7 @@
                         </div>
                     </div>
                     <div class="imagen">
-                        <img *ngIf="imageSrc" [src]="imageSrc">
+                        <div *ngIf="imageSrc" [ngStyle]="{'background-image':'url(' + imageSrc + ')'}"></div>
                         <label for="imagen">Cambiar imagen</label>
                         <input id="imagen" type="file" ng2FileSelect [uploader]="uploader" (change)="onFileSelected($event)">
                     </div>

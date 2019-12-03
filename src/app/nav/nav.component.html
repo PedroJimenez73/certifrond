@@ -9,18 +9,18 @@
         <div class="message" [ngClass]="tipoMensaje" *ngIf="verMensaje">{{mensaje}}</div>
         <div class="user">
             <span>
-                <img src="assets/user-circle.svg">
-                <span class="alert">1</span>
+                <div class="perfil" *ngIf="imageSrc" [ngStyle]="{'background-image':'url(' + imageSrc + ')'}"></div>
+                <!-- <span class="alert">1</span> -->
             </span>
             {{nombre}}
             <div class="dropdown">
                 <div class="menu-user">
                     <div class="item"  routerLink="/tests/perfil/{{id}}">Mi perfil</div>
                     <hr>
-                    <div class="item"  (click)="toggleOverlay()">
+                    <!-- <div class="item"  (click)="toggleOverlay()">
                         Mensajes <span class="alert">1</span>
                     </div>
-                    <hr>
+                    <hr> -->
                     <div class="item"  (click)="toggleOverlay()">Ayuda</div>
                     <hr>
                     <div class="fila derecha">

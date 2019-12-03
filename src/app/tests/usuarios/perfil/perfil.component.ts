@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-perfil',
@@ -26,30 +27,30 @@ export class PerfilComponent implements OnInit {
   constructor(private ff: FormBuilder,
               private usuariosService: UsuariosService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
     this.profileForm = this.ff.group({
         nombre: '',
         email: '',
-        password: '',
         direccion: '',
         cp: '',
         localidad: '',
     });
     this.usuariosService.getUsuario(this.id)
-    .subscribe((res:any)=>{
-      this.usuario = res.usuario;
-      this.profileForm.get('nombre').setValue(this.usuario.nombre);
-      this.profileForm.get('email').setValue(this.usuario.email);
-      this.profileForm.get('direccion').setValue(this.usuario.direccion);
-      this.profileForm.get('cp').setValue(this.usuario.cp);
-      this.profileForm.get('localidad').setValue(this.usuario.localidad);
-      this.imageSrc = this.urlImagenes + '/' + this.usuario.imagen;
-    },(err:any)=>{
-      console.log(err);
-    })
+            .subscribe((res:any)=>{
+              this.usuario = res.usuario;
+              this.profileForm.get('nombre').setValue(this.usuario.nombre);
+              this.profileForm.get('email').setValue(this.usuario.email);
+              this.profileForm.get('direccion').setValue(this.usuario.direccion);
+              this.profileForm.get('cp').setValue(this.usuario.cp);
+              this.profileForm.get('localidad').setValue(this.usuario.localidad);
+              this.imageSrc = this.urlImagenes + '/' + this.usuario.imagen;
+            },(err:any)=>{
+              console.log(err);
+            })
     this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
       form.append('nombre', this.profileForm.get('nombre').value);
     };
@@ -58,7 +59,6 @@ export class PerfilComponent implements OnInit {
   sendUser() {
     const user = {
       nombre: this.profileForm.get('nombre').value,
-      password: this.profileForm.get('password').value,
       direccion: this.profileForm.get('direccion').value,
       cp: this.profileForm.get('cp').value,
       localidad: this.profileForm.get('localidad').value,
@@ -66,7 +66,7 @@ export class PerfilComponent implements OnInit {
     };
     this.usuariosService.putUsuario(this.id, user)
           .subscribe((res:any)=>{
-            console.log(res);
+            this.authService.setImagen(this.imagen);
           },(err: any)=>{
             console.log(err);
           })

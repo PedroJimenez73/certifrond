@@ -15,10 +15,15 @@ export class AuthService {
   nombre: any;
 
   private loggedIn = new BehaviorSubject<any>({logged: false, id: ''});
+  private imgPerfilIn = new BehaviorSubject<any>({imgPerfil: ''});
   id: any;
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
+  }
+
+  get isImgPerfilIn() {
+    return this.imgPerfilIn.asObservable();
   }
 
   urlAuth = environment.urlAuth;
@@ -36,6 +41,7 @@ export class AuthService {
           this.nombre = res.nombre;
           this.id = res.id;
           this.loggedIn.next({logged: true, id: this.id});
+          this.imgPerfilIn.next({imgPerfil: res.imagen});
           this.socket = io.connect('http://localhost:3000', {
             forceNew: true
           });
@@ -56,6 +62,10 @@ export class AuthService {
         return res;
       })
     );
+  }
+
+  setImagen(image) {
+    this.imgPerfilIn.next({imgPerfil: image});
   }
 
 }

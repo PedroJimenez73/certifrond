@@ -2,12 +2,13 @@ nav {
     width: 100%;
     height: 180px;
     background-image: url('../assets/friso.jpg');
+    //background-image: url('../assets/background.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     position: absolute;
     top: 0;
     left: 0;
-    padding: 20px;
+    padding: 10px 20px 20px;
     color: white;
     border-bottom: 0.8px solid rgba(255,255,255,.3);
 
@@ -18,21 +19,39 @@ nav {
         .logo-white {
             height: 50px;
             position: absolute;
-            top: 15px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
+        }
+
+        @media (max-width: 440px){
+          .logo-white {
+              height: 40px;
+          }
         }
       
         .user {
             @include flex(row, flex-start, center);
             margin-right: 0;
-            padding: 6px 10px 4px 4px;
+            padding: 2px 4px 4px 4px;
             position: relative;
       
             span {
                 font-size: 14px;
                 padding: 8px;
                 position: relative;
+
+                .perfil {
+                    width: 60px;
+                    min-width: 60px;
+                    height: 60px;
+                    min-height: 60px;
+                    border: 3px solid white;
+                    border-radius: 40px;
+                    background-repeat: none;
+                    background-position: center;
+                    background-size: cover;
+                }
       
                 span.alert {
                   position: absolute;
@@ -61,7 +80,7 @@ nav {
           right: 0;
           min-width: 300px;
           z-index: 10;
-          padding: 20px 0;
+          padding: 40px 0;
       
           .menu-user {
             width: 100%;
@@ -135,4 +154,10 @@ nav {
     }
 
   
+}
+
+@media (max-width: 440px){
+  nav {
+    padding: 10px 10px 10px 10px;
+  }
 }

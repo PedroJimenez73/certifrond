@@ -79,7 +79,7 @@
     }
 
     .body-card {
-        @include flex-column(flex-start, center);
+        @include flex-column(flex-start, flex-start);
     }
 
 }

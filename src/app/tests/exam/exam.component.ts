@@ -24,9 +24,7 @@ export class ExamComponent implements OnInit {
 
   startExam() {
     const intento = {
-      respuestas: [],
-      aciertos: [],
-      resultado: 'no pass'
+      examen: this.exam._id
     }
     this.intentosService.postIntento(intento)
                 .subscribe((res: any)=>{

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../servicios/auth.service';
+import { UsuariosService } from '../servicios/usuarios.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-nav',
@@ -15,20 +17,29 @@ export class NavComponent implements OnInit {
   nombre = '';
   tipoMensaje: '';
   subscripLogin: Subscription;
+  subscripImagen: Subscription;
   subscripMensaje: Subscription;
   @ViewChild('burger', {static: false}) burgerRef: ElementRef;
   @ViewChild('menu', {static: false}) menuRef: ElementRef;
   showOverlay = false;
   id: any;
+  imageSrc: string;
+  urlImagenes = environment.urlImagenes;
 
-  constructor(
-    private authService: AuthService
-    ) { 
+  constructor(private authService: AuthService,
+              private usuariosService: UsuariosService) { 
     this.subscripLogin = this.authService.isLoggedIn
           .subscribe(
             (data: any) => {
               this.isLogged = data.logged;
               this.id = data.id;
+            },
+            (error:any) => {console.log(error)
+          })
+    this.subscripImagen = this.authService.isImgPerfilIn
+          .subscribe(
+            (data: any) => {
+              this.imageSrc = this.urlImagenes + '/' + data.imgPerfil;
             },
             (error:any) => {console.log(error)
           })
@@ -47,6 +58,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     // this.nombre = JSON.parse(localStorage.getItem('usuario')).nombre;
+
   }
 
   toggleMenu() {
