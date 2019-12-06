@@ -1,7 +1,7 @@
 <app-breadcrumb></app-breadcrumb>
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso grid">
-        <div class="card" *ngFor="let exam of exams">
+        <div class="card" *ngFor="let exam of exams" appLoadFade>
             <div class="header-card">
                 <h2>{{exam.title}}</h2>
             </div>

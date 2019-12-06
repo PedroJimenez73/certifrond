@@ -9,6 +9,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { LandpageComponent } from './landpage/landpage.component';
 import { NavComponent } from './nav/nav.component';
+import { ModalComponent } from './modal/modal.component';
+import { LoadFadeDirective } from './custom/load-fade.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { NavComponent } from './nav/nav.component';
     LoginComponent,
     SigninComponent,
     LandpageComponent,
-    NavComponent
+    NavComponent,
+    ModalComponent,
+    LoadFadeDirective
   ],
   imports: [
     BrowserModule,

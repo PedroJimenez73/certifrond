@@ -12,6 +12,7 @@ import { QuestionsComponent } from './questions/questions.component';
 import { AnswersComponent } from './answers/answers.component';
 import { MultiAnswersComponent } from './multi-answers/multi-answers.component';
 import { PerfilComponent } from './usuarios/perfil/perfil.component';
+import { LoadFadeDirective } from './load-fade.directive';
 
 const routes: Routes = [
   {
@@ -52,7 +53,8 @@ const routes: Routes = [
     QuestionsComponent,
     AnswersComponent,
     MultiAnswersComponent,
-    PerfilComponent
+    PerfilComponent,
+    LoadFadeDirective
   ],
   imports: [
     CommonModule,

@@ -61,6 +61,8 @@
     }
 }
 
+
+
 .question {
     @include flex-row(flex-start, flex-start);
     width: 100%;
@@ -82,6 +84,14 @@
         font-weight: bold;
     }
 
+}
+
+form.questions {
+    width: 100%;
+}
+
+.questions {
+    width: 100%;
 }
 
 .answer {
@@ -109,3 +119,7 @@
         padding: 0.5em;
     }
 } 
+
+.question-buttons {
+    @include flex-row(flex-end, center);
+}

@@ -20,9 +20,9 @@ export class PerfilComponent implements OnInit {
   verMensaje = false;
   errores: string;
   urlImagenes = environment.urlImagenes;
-  public uploader:FileUploader = new FileUploader({url: this.urlImagenes});
   imagen: string;
   imageSrc: any;
+  public uploader:FileUploader = new FileUploader({url: this.urlImagenes});
 
   constructor(private ff: FormBuilder,
               private usuariosService: UsuariosService,
@@ -52,7 +52,7 @@ export class PerfilComponent implements OnInit {
               console.log(err);
             })
     this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
-      form.append('nombre', this.profileForm.get('nombre').value);
+      form.append('imagen', this.imagen);
     };
   }
 
@@ -67,6 +67,7 @@ export class PerfilComponent implements OnInit {
     this.usuariosService.putUsuario(this.id, user)
           .subscribe((res:any)=>{
             this.authService.setImagen(this.imagen);
+            this.router.navigate(['/']);
           },(err: any)=>{
             console.log(err);
           })
@@ -74,8 +75,8 @@ export class PerfilComponent implements OnInit {
 
   onFileSelected(event) {
     if(event.target.files.length > 0) {
-        this.imagen = this.profileForm.get('nombre').value + '.' + event.target.files[0].name.split('.')[event.target.files[0].name.split('.').length -1];
-        const file = event.target.files[0];
+        this.imagen = this.id + new Date().getTime() + '.' + event.target.files[0].name.split('.')[event.target.files[0].name.split('.').length -1];
+        let file = event.target.files[0];
         const reader = new FileReader();
         reader.onload = e => this.imageSrc = reader.result;
         reader.readAsDataURL(file);

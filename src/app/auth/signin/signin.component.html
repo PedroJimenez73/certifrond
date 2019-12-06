@@ -20,19 +20,23 @@
                 <input class="password" type="password" placeholder="Contraseña" formControlName="password" autocomplete="off">
             </div>
         </div>
-        <!-- <div class="fila">
+        <div class="fila">
             <div class="col-100">
-                <input class="password" type="password" placeholder="Repetir contraseña" formControlName="repassword" autocomplete="off">
+                <input class="password" type="password" placeholder="Repetir contraseña" formControlName="checkpass" autocomplete="off">
             </div>
-        </div> -->
+        </div>
         <div class="fila">
             <div class="col-100 botones">
                 <!-- <button type="submit" [disabled]="loginForm.invalid">
                     <span *ngIf="!waiting">Iniciar sesión</span>
                     <span *ngIf="waiting" style="display: flex;"><div class="spinner-white"></div> Espere...</span>
                 </button> -->
-                <button type="submit" routerLink="/tests">
+                <button type="button" *ngIf="signInForm.invalid" (click)="showValidacion()">
                     Crear cuenta
+                </button>
+                <button *ngIf="signInForm.valid" type="submit">
+                        <span *ngIf="!waiting">Crear cuenta</span>
+                        <span *ngIf="waiting" style="display: flex;"><div class="spinner-white"></div> Espere...</span>
                 </button>
             </div>
         </div>
@@ -41,7 +45,7 @@
                 <p class="switch-login">Si ya dispone de cuenta pulse <a routerLink="/login">aquí</a></p>
             </div>
         </div>
-        <div *ngIf="message" class="fila">
+        <div *ngIf="verMensaje" class="fila">
             <div class="message danger" style="width: 100%">{{errores}}</div>
         </div>
     </form>

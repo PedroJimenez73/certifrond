@@ -4,6 +4,8 @@
     background-color: white;
     box-shadow: 0 0 13px 0 rgba(82,63,105,.05);
     position: relative;
+    opacity: 0;
+    transition: 500ms all ease-in-out;
 
     .header-card {
         padding: 1em;
@@ -93,5 +95,9 @@
     .card.side {
         margin-top: 1em;
     }
+}
+
+.card.show {
+    opacity: 1;
 }
 

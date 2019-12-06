@@ -21,4 +21,12 @@ export class IntentosService {
       })
     );
   }
+
+  putIntento(id, intento) {
+    return this.http.put(this.urlIntentos + '/' + id + '?token=' + this.authService.token, intento).pipe(
+      map( (res: any) => {
+        return res;
+      })
+    );
+  }
 }

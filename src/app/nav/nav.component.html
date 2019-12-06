@@ -21,7 +21,7 @@
                         Mensajes <span class="alert">1</span>
                     </div>
                     <hr> -->
-                    <div class="item"  (click)="toggleOverlay()">Ayuda</div>
+                    <div class="item"  (click)="showModal()">Ayuda</div>
                     <hr>
                     <div class="fila derecha">
                         <button (click)="exit()">Cerrar sesión</button>
@@ -43,17 +43,7 @@
         &copy; 2019 ELERNIAM
     </div>
 </div>
-<div class="overlay" (click)="toggleOverlay()" *ngIf="showOverlay">
-    <div class="card">
-        <div class="fila space">
-            <img src="assets/alert-triangle.svg">
-            <img style="cursor: pointer;" src="assets/x.svg">
-        </div>
-        <div class="fila">
-            <h2>La funcionalidad no está habilitada, por favor contacte con el administrador.</h2>
-        </div>
-        <div class="fila derecha">
-            <button>Aceptar</button>
-        </div>
-    </div>
-</div>
+<app-modal *ngIf="modal" 
+           [texto]="'La funcionalidad no está disponible, disculpen las molestias.'"
+           [parametro]="id"
+           (action)="getAction($event)"></app-modal>

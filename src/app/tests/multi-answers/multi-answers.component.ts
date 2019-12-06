@@ -11,7 +11,9 @@ export class MultiAnswersComponent implements OnInit, OnChanges {
 
   @Input() exam;
   @Input() i;
+  @Input() waiting;
   @Output() resultsRes: EventEmitter<any> = new EventEmitter();
+
 
   form: FormGroup;
   answersData: any = [];
@@ -51,7 +53,8 @@ export class MultiAnswersComponent implements OnInit, OnChanges {
     });
   }
 
-  submit() {
+  setQuestion(cont) {
+    this.i += cont;
     this.results = []
     if (this.multi) { 
       this.form.value.answers.forEach((input,i) => {

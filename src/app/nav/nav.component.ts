@@ -25,6 +25,7 @@ export class NavComponent implements OnInit {
   id: any;
   imageSrc: string;
   urlImagenes = environment.urlImagenes;
+  modal = false;
 
   constructor(private authService: AuthService,
               private usuariosService: UsuariosService) { 
@@ -77,6 +78,24 @@ export class NavComponent implements OnInit {
   exit() {
     this.authService.logOut()
             .subscribe()
+  }
+
+  showModal(id) {
+    this.id = id;
+    this.modal = true;
+  }
+
+  hideModal() {
+    this.modal = false;
+  }
+
+  getAction(event) {
+    if(event.action) {
+      // this.removeCliente(event.parametro);
+      this.hideModal();
+    } else {
+      this.hideModal();
+    }
   }
 
 }
