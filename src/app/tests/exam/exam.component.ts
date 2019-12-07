@@ -19,7 +19,12 @@ export class ExamComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
-    this.exam = this.testsService.getExam(this.id);
+    this.testsService.getExam(this.id)
+            .subscribe((res:any)=>{
+              this.exam = res.exam;
+              }, (res: any)=>{
+                console.log(res);
+              })
   }
 
   startExam() {

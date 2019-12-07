@@ -3,21 +3,39 @@
     <div class="contenido para-friso">
         <div class="card questions" appLoadFade>
             <div class="header-card">
-                <h1>{{exam.title}}</h1>
+                <h1>{{exam?.title}}</h1>
                 <button>Salir</button>
             </div>
             <hr>
             <div class="body-card">
                 <div class="question">
-                    <span>{{('0' + (i + 1)).slice(-2)}}</span><span>{{exam.questions[i].question}}</span>
+                    <span>{{('0' + (i + 1)).slice(-2)}}</span><span>{{exam?.questions[i].question}}</span>
                 </div>
-                <!-- *ngIf="exam.questions[i].corrects.length > 1" -->
-                <app-multi-answers [waiting]="waiting" [exam]="exam" [i]="i" (resultsRes)="getResultsRes($event)"></app-multi-answers>
+                <form [formGroup]="form" class="questions">
+                   <div *ngIf="multi" class="questions">
+                        <label  class="answer" formArrayName="answers" *ngFor="let answer of form.controls.answers.controls; let i = index">
+                            <input type="checkbox" [formControlName]="i">
+                            {{abcAnswers[i]}}.- {{answersData[i]}}
+                        </label>
+                    </div>
+                    <div *ngIf="!multi" class="questions">
+                        <label class="answer" *ngFor="let answer of answersData; let i = index">
+                            <input type="radio" name="answerRadio" formControlName="answerRadio" value="{{abcAnswers[i]}}">
+                            {{abcAnswers[i]}}.- {{answer}}
+                        </label>
+                    </div>
+                    <div class="question-buttons">
+                        <button class="outline" *ngIf="i !== 0" (click)="setQuestion(-1)">
+                            <span *ngIf="!waiting">Anterior</span>
+                            <span *ngIf="waiting" style="display: flex;"><div class="spinner-color"></div> Espere...</span>
+                        </button>
+                        <button class="outline m-l-small" *ngIf="i !== (exam.questions.length - 1)" (click)="setQuestion(1)">
+                            <span *ngIf="!waiting">Siguiente</span>
+                            <span *ngIf="waiting" style="display: flex;"><div class="spinner-color"></div> Espere...</span>
+                        </button>
+                    </div>
+                </form>
             </div>
-            <!-- <div class="footer-card">
-                <button class="outline" *ngIf="i !== 0" (click)="setQuestion(-1)">Anterior</button>
-                <button class="outline m-l-small" *ngIf="i !== (exam.questions.length - 1)" (click)="setQuestion(1)">Siguiente</button>
-            </div> -->
         </div>
     </div>
 </div>

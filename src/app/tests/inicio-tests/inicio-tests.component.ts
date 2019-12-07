@@ -26,7 +26,12 @@ export class InicioTestsComponent implements OnInit {
   }
 
   loadExams() {
-    this.exams = this.testsService.getExams();
+    this.testsService.getExams()
+              .subscribe((res: any)=>{
+                this.exams = res.exams;
+              }, (err)=>{
+                console.log(err);
+              })
   }
 
 }

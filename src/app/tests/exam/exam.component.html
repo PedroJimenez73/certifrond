@@ -3,21 +3,22 @@
     <div class="contenido para-friso">
         <div class="card jumbo" appLoadFade>
             <div class="header-card">
-                <h1>{{exam.title}}</h1>
+                <h1>{{exam?.title}}</h1>
             </div>
             <hr>
             <div class="body-card">
                 <div class="resumen">
                     <div class="datos">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ad magnam quibusdam officia doloribus unde excepturi dolorem, nemo voluptas maiores eos adipisci, ipsam ratione similique assumenda aut aliquid totam recusandae?</p>
-                        <p class="features"><span>DURACIÓN </span> {{exam.duration}}'</p> 
-                        <p class="features"><span>Nº PREGUNTAS </span> {{exam.questions.length}}</p> 
+                        <p class="features"><span>DURACIÓN </span> {{exam?.duration}}'</p> 
+                        <p class="features"><span>Nº PREGUNTAS </span> {{exam?.questions.length}}</p> 
                     </div>
-                    <img src="{{exam.pic}}" alt="">
+                    <img src="{{exam?.pic}}" alt="">
                 </div>
             </div>
             <div class="footer-card">
-                <button (click)="startExam()">Iniciar examen</button>
+                <button class="outline">Ver resultados anteriores</button>
+                <button class="m-l-small"(click)="startExam()">Nuevo intento</button>
             </div>
         </div>
         <div class="card side" appLoadFade>
