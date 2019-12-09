@@ -14,7 +14,7 @@ const routes: Routes = [
     path: 'tests', 
     loadChildren: './tests/tests.module#TestsModule',
     data: {rutas: [{ruta:'/tests', texto:'Inicio'}]},
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {path:'**', component: LoginComponent}
 ];

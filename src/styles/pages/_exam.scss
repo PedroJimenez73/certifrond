@@ -61,7 +61,10 @@
     }
 }
 
-
+.answers-data {
+    font-size: 14px;
+    @include flex-row(center, center);
+}
 
 .question {
     @include flex-row(flex-start, flex-start);
@@ -81,7 +84,18 @@
     span:nth-child(2) {
         margin: 8px 0;
         font-size: 1.2em;
+        line-height: 1.5;
         font-weight: bold;
+
+        ul {
+            list-style-type: square;
+            margin: 1em;
+
+            li {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+        }
     }
 
 }
@@ -123,3 +137,48 @@ form.questions {
 .question-buttons {
     @include flex-row(flex-end, center);
 }
+
+.resumen-final {
+
+    width: 30%;
+    margin-top: 1.5em;
+    color: white;
+    border-radius: 0.4em;
+
+    .resumen-body {
+        padding: 1em 2em;
+        @include flex-row(space-between, flex-end);
+        font-size: 12px;
+
+        .numbers {
+            font-size: 22px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        img {
+            height: 80px;
+        }
+    }
+
+    hr {
+        border: none;
+        height: 1px;
+        background-color: white;
+        margin: 0;
+    }
+
+    .resumen-footer {
+        font-size: 12px;
+        padding: 1em 2em;
+    }
+
+    &.success {
+        background-color: $verde;
+    }
+
+    &.danger {
+        background-color: $rojo;
+    }
+
+}
+

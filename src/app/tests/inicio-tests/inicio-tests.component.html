@@ -10,10 +10,8 @@
                 <img src="{{exam.pic}}">
             </div>
             <div class="footer-card">
-                <button routerLink="exam/{{exam._id}}">
-                    <span *ngIf="exam.production">Acceder</span>
-                    <span *ngIf="!exam.production">Próximamente</span>
-                </button>
+                <button *ngIf="exam.production" routerLink="exam/{{exam._id}}">Acceder</button>
+                <button *ngIf="!exam.production">Próximamente</button>
             </div>
         </div>
     </div>

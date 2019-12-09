@@ -16,6 +16,7 @@ export class AuthService {
 
   private loggedIn = new BehaviorSubject<any>({logged: false, id: ''});
   private imgPerfilIn = new BehaviorSubject<any>({imgPerfil: ''});
+  private mensajeIn = new BehaviorSubject<any>({});
   id: any;
 
   get isLoggedIn() {
@@ -24,6 +25,10 @@ export class AuthService {
 
   get isImgPerfilIn() {
     return this.imgPerfilIn.asObservable();
+  }
+
+  get isMensajeIn() {
+    return this.mensajeIn.asObservable();
   }
 
   urlAuth = environment.urlAuth;
@@ -42,6 +47,7 @@ export class AuthService {
           this.id = res.id;
           this.loggedIn.next({logged: true, id: this.id});
           this.imgPerfilIn.next({imgPerfil: res.imagen});
+          this.mensajeIn.next({mensaje: `Bienvenido de nuevo ${this.nombre}`, tipo: 'success'});
           this.socket = io.connect('http://localhost:3000', {
             forceNew: true
           });
@@ -66,6 +72,10 @@ export class AuthService {
 
   setImagen(image) {
     this.imgPerfilIn.next({imgPerfil: image});
+  }
+
+  setMensaje(texto, tipo) {
+    this.mensajeIn.next({mensaje: texto, tipo: tipo});
   }
 
 }

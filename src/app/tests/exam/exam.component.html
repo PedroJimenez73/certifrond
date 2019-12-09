@@ -17,8 +17,8 @@
                 </div>
             </div>
             <div class="footer-card">
-                <button class="outline">Ver resultados anteriores</button>
-                <button class="m-l-small"(click)="startExam()">Nuevo intento</button>
+                <button class="outline" (click)="showModal()">Ver resultados anteriores</button>
+                <button class="m-l-small" (click)="startExam()">Nuevo intento</button>
             </div>
         </div>
         <div class="card side" appLoadFade>
@@ -28,11 +28,15 @@
             <hr>
             <div class="body-card">
                 <div class="stats">
-                    <p>Nº INTENTOS <span class="badge info">6</span></p> 
-                    <p>RESULTADOS <span class="badge success">4/6</span></p> 
-                    <p>ÚLTIMO INTENTO <span class="badge warning">13/11/19</span></p> 
+                    <p>Nº INTENTOS <span class="badge info">?</span></p> 
+                    <p>RESULTADOS <span class="badge success">?/?</span></p> 
+                    <p>ÚLTIMO INTENTO <span class="badge warning">?/?/?</span></p> 
                 </div>
             </div>
         </div>
     </div>
 </div>
+<app-modal *ngIf="modal" 
+           [texto]="'La funcionalidad no está disponible, disculpen las molestias.'"
+           [parametro]="id"
+           (action)="getAction($event)"></app-modal>

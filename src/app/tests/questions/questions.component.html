@@ -4,38 +4,71 @@
         <div class="card questions" appLoadFade>
             <div class="header-card">
                 <h1>{{exam?.title}}</h1>
-                <button>Salir</button>
+                <div class="answers-data">
+                    {{i + 1}} / {{exam.questions.length}}
+                    <img class="m-l-small m-r-small" src="assets/clock.svg"> Sin tiempo límite
+                    <button class="m-l-small" *ngIf="!resumen" (click)="showModal()">Salir</button>
+                </div>
             </div>
             <hr>
-            <div class="body-card">
+            <app-spinner *ngIf="waiting"></app-spinner>
+            <div class="body-card" *ngIf="!resumen && !waiting">
                 <div class="question">
-                    <span>{{('0' + (i + 1)).slice(-2)}}</span><span>{{exam?.questions[i].question}}</span>
+                    <span>{{('0' + (i + 1)).slice(-2)}}</span><span [innerHTML]="exam.questions[i].question"></span>
                 </div>
                 <form [formGroup]="form" class="questions">
-                   <div *ngIf="multi" class="questions">
-                        <label  class="answer" formArrayName="answers" *ngFor="let answer of form.controls.answers.controls; let i = index">
-                            <input type="checkbox" [formControlName]="i">
-                            {{abcAnswers[i]}}.- {{answersData[i]}}
-                        </label>
-                    </div>
-                    <div *ngIf="!multi" class="questions">
+                    <div class="questions" *ngIf="multi === false">
                         <label class="answer" *ngFor="let answer of answersData; let i = index">
                             <input type="radio" name="answerRadio" formControlName="answerRadio" value="{{abcAnswers[i]}}">
                             {{abcAnswers[i]}}.- {{answer}}
                         </label>
                     </div>
+                    <div class="questions" *ngIf="multi === true">
+                        <label  class="answer" formArrayName="answers" *ngFor="let answer of form.controls.answers.controls; let i = index">
+                            <input type="checkbox" [formControlName]="i">
+                            {{abcAnswers[i]}}.- {{answersData[i]}}
+                        </label>
+                    </div>
                     <div class="question-buttons">
                         <button class="outline" *ngIf="i !== 0" (click)="setQuestion(-1)">
-                            <span *ngIf="!waiting">Anterior</span>
-                            <span *ngIf="waiting" style="display: flex;"><div class="spinner-color"></div> Espere...</span>
+                            Anterior
                         </button>
                         <button class="outline m-l-small" *ngIf="i !== (exam.questions.length - 1)" (click)="setQuestion(1)">
-                            <span *ngIf="!waiting">Siguiente</span>
-                            <span *ngIf="waiting" style="display: flex;"><div class="spinner-color"></div> Espere...</span>
+                            Siguiente
+                        </button>
+                        <button class="m-l-small" *ngIf="i === (exam.questions.length - 1)" (click)="endExam()">
+                            Finalizar examen
                         </button>
                     </div>
                 </form>
             </div>
+            <div class="body-card" *ngIf="resumen && !waiting">
+                <h2>Resumen</h2>
+                <div class="resumen-final" [ngClass]="{'success': (acertadas/exam.questions.length) >= 0.5, 'danger': (acertadas/exam.questions.length) < 0.5}">
+                    <div class="resumen-body">
+                        <div>
+                            <p class="numbers">{{acertadas}} / {{exam.questions.length}}</p>
+                            <p>RESPUESTAS ACERTADAS</p>
+                        </div>
+                        <img src="assets/big-check.svg" *ngIf="(acertadas/exam.questions.length) >= 0.5">
+                        <img src="assets/big-alert.svg" *ngIf="(acertadas/exam.questions.length) < 0.5">
+                    </div>
+                    <hr>
+                    <div class="resumen-footer">
+                        <p>{{intento.fecha | date: 'dd/MM/yyyy hh:mm'}}</p> 
+                    </div>
+                </div>
+            </div>
+            <div class="footer-card" *ngIf="resumen && !waiting">
+                <button class="outline" routerLink="/tests">Volver al inicio</button>
+                <button class="m-l-small" (click)="showModal()">Ver resultados</button>
+            </div>
         </div>
     </div>
 </div>
+<app-modal *ngIf="modal && !resumen" 
+           [texto]="'¿Está seguro de abandonar el exámen?'"
+           (action)="getAction($event)"></app-modal>
+<app-modal *ngIf="modal && resumen" 
+           [texto]="'La funcionalidad no está disponible, disculpen las molestias.'"
+           (action)="getAction($event)"></app-modal>

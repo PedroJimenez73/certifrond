@@ -9,10 +9,10 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ExamComponent } from './exam/exam.component';
 import { QuestionsComponent } from './questions/questions.component';
-import { AnswersComponent } from './answers/answers.component';
-import { MultiAnswersComponent } from './multi-answers/multi-answers.component';
 import { PerfilComponent } from './usuarios/perfil/perfil.component';
 import { LoadFadeDirective } from './load-fade.directive';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ModalComponent } from './modal/modal.component';
 
 const routes: Routes = [
   {
@@ -51,10 +51,10 @@ const routes: Routes = [
     BreadcrumbComponent,
     ExamComponent,
     QuestionsComponent,
-    AnswersComponent,
-    MultiAnswersComponent,
     PerfilComponent,
-    LoadFadeDirective
+    LoadFadeDirective,
+    SpinnerComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,

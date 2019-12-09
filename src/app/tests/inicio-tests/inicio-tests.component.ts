@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TestsService } from '../tests.service';
 import { Router, NavigationStart } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-inicio-tests',
@@ -12,7 +13,8 @@ export class InicioTestsComponent implements OnInit {
   exams: any
 
   constructor(private testsService: TestsService,
-              private router: Router) { 
+              private router: Router,
+              private authService: AuthService) { 
     // router.events
     // .subscribe((event: NavigationStart) => {
     //   if (event.navigationTrigger === 'popstate') {
@@ -30,7 +32,7 @@ export class InicioTestsComponent implements OnInit {
               .subscribe((res: any)=>{
                 this.exams = res.exams;
               }, (err)=>{
-                console.log(err);
+                this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');
               })
   }
 

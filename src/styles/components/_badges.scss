@@ -16,6 +16,10 @@
         background-color: $amarillo;
     }
 
+    &.danger {
+        background-color: $rojo;
+    }
+
     &.info {
         background-color: $azul;
     }

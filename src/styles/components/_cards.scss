@@ -101,3 +101,14 @@
     opacity: 1;
 }
 
+@media (max-width: 720px) {
+    .card.questions {
+    
+        .header-card {
+            padding: 1em;
+            @include flex-column(center, center);
+        }
+    
+    }
+}
+

@@ -44,17 +44,16 @@ export class NavComponent implements OnInit {
             },
             (error:any) => {console.log(error)
           })
-    // this.subscripMensaje = this.estadoService.setMensaje
-    //       .subscribe(
-    //         (data: any) => {
-    //           this.verMensaje = true;
-    //           this.mensaje = data.mensaje;
-    //           this.tipoMensaje = data.tipo;
-    //           this.nombre = data.extra;
-    //           setTimeout(() => {this.verMensaje = false},3000);
-    //         },
-    //         (error:any) => {console.log(error)}
-    //       )
+    this.subscripMensaje = this.authService.isMensajeIn
+          .subscribe(
+            (data: any) => {
+              this.verMensaje = true;
+              this.mensaje = data.mensaje;
+              this.tipoMensaje = data.tipo;
+              setTimeout(() => {this.verMensaje = false},3000);
+            },
+            (error:any) => {console.log(error)}
+          )
   }
 
   ngOnInit() {
