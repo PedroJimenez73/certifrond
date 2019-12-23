@@ -1,7 +1,8 @@
 <app-breadcrumb></app-breadcrumb>
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso">
-        <div class="card jumbo" appLoadFade>
+        <app-spinner *ngIf="waitingInit"></app-spinner>
+        <div class="card jumbo" *ngIf="!waitingInit" appLoadFade>
             <div class="header-card">
                 <h1>{{exam?.title}}</h1>
             </div>
@@ -17,11 +18,16 @@
                 </div>
             </div>
             <div class="footer-card">
-                <button class="outline" (click)="showModal()">Ver resultados anteriores</button>
-                <button class="m-l-small" (click)="startExam()">Nuevo intento</button>
+                <button class="outline" routerLink="/tests/listado-intentos">Ver resultados anteriores</button>
+                <button class="m-l-small" *ngIf="!waiting" type="submit" (click)="startExam()">
+                        Nuevo intento
+                </button>
+                <button class="m-l-small" type="button" *ngIf="waiting">
+                        <span style="display: flex;"><div class="spinner-white"></div> Espere...</span>
+                </button>
             </div>
         </div>
-        <div class="card side" appLoadFade>
+        <div class="card side" *ngIf="!waitingInit" appLoadFade>
             <div class="header-card">
                 <h1>Stats</h1>
             </div>

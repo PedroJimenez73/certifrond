@@ -14,6 +14,8 @@ export class ExamComponent implements OnInit {
   id: string;
   exam: any;
   modal = false;
+  waiting = false;
+  waitingInit = true;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -26,20 +28,24 @@ export class ExamComponent implements OnInit {
     this.testsService.getExam(this.id)
             .subscribe((res:any)=>{
               this.exam = res.exam;
+              this.waitingInit = false;
               }, (res: any)=>{
-                console.log(res);
+                this.waitingInit = false;
+                this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');
               })
   }
 
   startExam() {
+    this.waiting = true;
     const intento = {
-      examen: this.exam._id
+      examen: this.exam.title
     }
     this.intentosService.postIntento(intento)
                 .subscribe((res: any)=>{
                   let intentoId = res._id;
                   this.router.navigate(['/tests/questions/' + this.id + '/' + intentoId])
                 },(error)=>{
+                  this.waiting = false;
                   this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');
                 })
   }

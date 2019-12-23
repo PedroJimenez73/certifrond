@@ -6,7 +6,7 @@
     color: white;
     border-radius: 15px;
     padding: 0.5em 1em;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $fuente-numeros;
 
     &.success {
         background-color: $verde;

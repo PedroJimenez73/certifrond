@@ -9,7 +9,6 @@
 
         .cuenta {
             width: 60%;
-            min-width: 360px;
         }
     
         .imagen {
@@ -43,6 +42,36 @@
                 box-shadow: 0 4px 16px 0 rgba(88,103,221,.15);
                 padding: 0.5em 1em;
                 transition: all 400ms ease-in-out;
+            }
+        }
+    }
+}
+
+@media (max-width: 540px) {
+
+    .body-card.profile {
+        padding: 0.5em;
+    }
+
+    .profile {
+        @include flex-column(center, center);
+        flex-wrap: wrap;
+    
+        form {
+            width: 100%;
+            @include flex-column(center, center);
+            flex-wrap: wrap;
+    
+            .cuenta {
+                width: 100%;
+            }
+
+            .imagen {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
             }
         }
     }

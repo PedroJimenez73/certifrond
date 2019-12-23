@@ -9,10 +9,30 @@ import { map } from 'rxjs/operators';
 })
 export class IntentosService {
 
+  idUsuario: string;
+
   urlIntentos = environment.urlIntentos;
 
   constructor(private authService: AuthService,
-              private http: HttpClient) { }
+              private http: HttpClient) { 
+                this.idUsuario = this.authService.id;
+              }
+
+  getIntentos() {
+    return this.http.get(this.urlIntentos + '/' + this.idUsuario).pipe(
+      map( (res: any) => {
+        return res;
+      })
+    );
+  }
+
+  getIntento(id) {
+    return this.http.get(this.urlIntentos + '/int/' + id).pipe(
+      map( (res: any) => {
+        return res;
+      })
+    );
+  }
 
   postIntento(intento) {
     return this.http.post(this.urlIntentos + '?token=' + this.authService.token, intento).pipe(

@@ -50,6 +50,12 @@
     }
 }
 
+@media(max-width: 720px)  {
+    .contenido {
+        padding: 0.5em;
+    }
+}
+
 .header {
     background-color: $verde;
 

@@ -3,6 +3,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +13,21 @@ import { Router } from '@angular/router';
 export class UsuariosService {
 
   urlUsuarios = environment.urlUsuarios;
+  subscripLogin: Subscription;
+  token: any;
 
   constructor(private http: HttpClient,
-              private router: Router) { }
+              private router: Router,
+              private authService: AuthService) {
+                this.subscripLogin = this.authService.isLoggedIn
+                .subscribe(
+                  (data: any) => {
+                    this.token = data.token;
+                  },
+                  (error:any) => {
+                    console.log(error)
+                  })
+              }
 
   getUsuario(id) {
     return this.http.get(this.urlUsuarios + '/' + id).pipe(

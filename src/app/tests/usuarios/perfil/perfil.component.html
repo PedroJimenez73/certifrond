@@ -1,7 +1,8 @@
 <app-breadcrumb></app-breadcrumb>
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso">
-        <div class="card jumbo" appLoadFade>
+        <app-spinner *ngIf="waitingInit"></app-spinner>
+        <div class="card jumbo" *ngIf="!waitingInit" appLoadFade>
             <div class="header-card">
                 <h1>Mi cuenta</h1>
             </div>
@@ -40,17 +41,13 @@
                     </div>
                     <div class="fila">
                         <div class="col-100 botones">
-                            <!-- <button type="submit" [disabled]="loginForm.invalid">
-                                <span *ngIf="!waiting">Iniciar sesión</span>
-                                <span *ngIf="waiting" style="display: flex;"><div class="spinner-white"></div> Espere...</span>
-                            </button> -->
-                            <button type="submit" (click)="uploader.uploadAll()">
-                                Guardar cambios
+                            <button *ngIf="!waiting" type="submit" (click)="uploader.uploadAll()">
+                                    Guardar cambios
+                            </button>
+                            <button type="button" *ngIf="waiting">
+                                    <span style="display: flex;"><div class="spinner-white"></div> Espere...</span>
                             </button>
                         </div>
-                    </div>
-                    <div *ngIf="message" class="fila">
-                        <div class="message danger" style="width: 100%">{{errores}}</div>
                     </div>
                 </form>
             </div>
@@ -65,9 +62,9 @@
             <hr>
             <div class="body-card">
                 <div class="stats">
-                    <p>Nº INTENTOS <span class="badge info">6</span></p> 
-                    <p>RESULTADOS <span class="badge success">4/6</span></p> 
-                    <p>ÚLTIMO INTENTO <span class="badge warning">13/11/19</span></p> 
+                    <p>Nº INTENTOS <span class="badge info">?</span></p> 
+                    <p>RESULTADOS <span class="badge success">?/?</span></p> 
+                    <p>ÚLTIMO INTENTO <span class="badge warning">?/?/?</span></p> 
                 </div>
             </div>
         </div>

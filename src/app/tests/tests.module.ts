@@ -13,6 +13,9 @@ import { PerfilComponent } from './usuarios/perfil/perfil.component';
 import { LoadFadeDirective } from './load-fade.directive';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ModalComponent } from './modal/modal.component';
+import { ListadoIntentosComponent } from './listado-intentos/listado-intentos.component';
+import { IntentoComponent } from './intento/intento.component';
+import { SuspensivosPipe } from './suspensivos.pipe';
 
 const routes: Routes = [
   {
@@ -39,6 +42,25 @@ const routes: Routes = [
     }
   },
   {
+    path:'listado-intentos', 
+    component: ListadoIntentosComponent,
+    data: { rutas: [
+      {ruta:'/tests', texto:'Inicio'},
+      {texto:'Intentos'}
+      ] 
+    }
+  },
+  {
+    path:'listado-intentos/intento/:id/:intentoId', 
+    component: IntentoComponent,
+    data: { rutas: [
+        {ruta:'/tests', texto:'Inicio'},
+        {ruta:'/tests/listado-intentos', texto:'Intentos'},
+        {texto:'Intento'}
+      ] 
+    }
+  },
+  {
     path: 'perfil/:id', 
     component: PerfilComponent,
     data: {rutas: [{ruta:'/', texto:'Inicio'}, {texto: 'Mi cuenta'}]}
@@ -54,7 +76,10 @@ const routes: Routes = [
     PerfilComponent,
     LoadFadeDirective,
     SpinnerComponent,
-    ModalComponent
+    ModalComponent,
+    ListadoIntentosComponent,
+    IntentoComponent,
+    SuspensivosPipe
   ],
   imports: [
     CommonModule,

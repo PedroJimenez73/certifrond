@@ -22,9 +22,11 @@
         </div>
         <div class="fila">
             <div class="col-100 botones">
-                <button type="submit">
-                    <span *ngIf="!waiting">Iniciar sesión</span>
-                    <span *ngIf="waiting" style="display: flex;"><div class="spinner-white"></div> Espere...</span>
+                <button type="submit" *ngIf="!waiting">
+                    Iniciar sesión
+                </button>
+                <button type="button" *ngIf="waiting">
+                    <span style="display: flex;"><div class="spinner-white"></div> Espere...</span>
                 </button>
             </div>
         </div>
@@ -33,3 +35,6 @@
         </div>
     </form>
 </div>
+<app-modal *ngIf="modal" 
+           [texto]="'Sesión iniciada en otro dispositivo, solo es posible mantener una sesión abierta.'"
+           (action)="getAction($event)"></app-modal>

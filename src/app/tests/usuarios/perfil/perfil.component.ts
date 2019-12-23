@@ -17,6 +17,7 @@ export class PerfilComponent implements OnInit {
   id: any;
   usuario: any;
   waiting = false;
+  waitingInit = true;
   verMensaje = false;
   errores: string;
   urlImagenes = environment.urlImagenes;
@@ -48,8 +49,11 @@ export class PerfilComponent implements OnInit {
               this.profileForm.get('cp').setValue(this.usuario.cp);
               this.profileForm.get('localidad').setValue(this.usuario.localidad);
               this.imageSrc = this.urlImagenes + '/' + this.usuario.imagen;
+              this.imagen = this.usuario.imagen;
+              this.waitingInit = false;
             },(err:any)=>{
-              console.log(err);
+              this.waitingInit = false;
+              this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');
             })
     this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
       form.append('imagen', this.imagen);
@@ -57,6 +61,7 @@ export class PerfilComponent implements OnInit {
   }
 
   sendUser() {
+    this.waiting = true;
     const user = {
       nombre: this.profileForm.get('nombre').value,
       direccion: this.profileForm.get('direccion').value,
@@ -68,8 +73,10 @@ export class PerfilComponent implements OnInit {
           .subscribe((res:any)=>{
             this.authService.setImagen(this.imagen);
             this.router.navigate(['/']);
+            this.authService.setMensaje('Los cambios han sido guardados correctamente', 'success');
           },(err: any)=>{
-            console.log(err);
+            this.waiting = false;
+            this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');
           })
   }
 

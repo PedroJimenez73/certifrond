@@ -10,7 +10,8 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class InicioTestsComponent implements OnInit {
 
-  exams: any
+  exams: any;
+  waiting = true;
 
   constructor(private testsService: TestsService,
               private router: Router,
@@ -31,8 +32,10 @@ export class InicioTestsComponent implements OnInit {
     this.testsService.getExams()
               .subscribe((res: any)=>{
                 this.exams = res.exams;
+                this.waiting = false;
               }, (err)=>{
                 this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');
+                this.waiting = false;
               })
   }
 

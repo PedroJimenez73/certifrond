@@ -16,7 +16,7 @@ const routes: Routes = [
     data: {rutas: [{ruta:'/tests', texto:'Inicio'}]},
     canActivate: [AuthGuard]
   },
-  {path:'**', component: LoginComponent}
+  // {path:'**', component: LoginComponent}
 ];
 
 @NgModule({

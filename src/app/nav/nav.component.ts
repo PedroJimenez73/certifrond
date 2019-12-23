@@ -75,12 +75,10 @@ export class NavComponent implements OnInit {
   }
 
   exit() {
-    this.authService.logOut()
-            .subscribe()
+    this.authService.logOut(false);
   }
 
-  showModal(id) {
-    this.id = id;
+  showModal() {
     this.modal = true;
   }
 

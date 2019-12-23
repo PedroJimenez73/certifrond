@@ -7,8 +7,7 @@
                 <h1>{{exam?.title}}</h1>
                 <div class="answers-data">
                     {{i + 1}} / {{exam.questions.length}}
-                    <img class="m-l-small m-r-small" src="assets/clock.svg"> Sin tiempo límite
-                    <button class="m-l-small" *ngIf="!resumen" (click)="showModal()">Salir</button>
+                    <button class="m-l-small" *ngIf="!resumen" routerLink="/tests/listado-intentos">Salir</button>
                 </div>
             </div>
             <hr>
@@ -20,13 +19,13 @@
                 <form [formGroup]="form" class="questions">
                     <div class="questions" *ngIf="multi === false">
                         <label class="answer" *ngFor="let answer of answersData; let i = index">
-                            <input type="radio" name="answerRadio" formControlName="answerRadio" value="{{abcAnswers[i]}}">
+                            <input disabled type="radio" name="answerRadio" formControlName="answerRadio" value="{{abcAnswers[i]}}">
                             {{abcAnswers[i]}}.- {{answer}}
                         </label>
                     </div>
                     <div class="questions" *ngIf="multi === true">
-                        <label  class="answer" formArrayName="answers" *ngFor="let answer of form.controls.answers.controls; let i = index">
-                            <input type="checkbox" [formControlName]="i">
+                        <label class="answer" formArrayName="answers" *ngFor="let answer of form.controls.answers.controls; let i = index">
+                            <input disabled type="checkbox" [formControlName]="i">
                             {{abcAnswers[i]}}.- {{answersData[i]}}
                         </label>
                     </div>
@@ -38,7 +37,7 @@
                             Siguiente
                         </button>
                         <button class="m-l-small" *ngIf="i === (exam.questions.length - 1)" (click)="endExam()">
-                            Finalizar examen
+                            Ver resumen
                         </button>
                     </div>
                 </form>
@@ -61,15 +60,8 @@
                 </div>
             </div>
             <div class="footer-card" *ngIf="resumen && !waiting">
-                <button class="outline" routerLink="/tests">Volver al inicio</button>
-                <button class="m-l-small" (click)="showModal()">Ver resultados</button>
+                <button class="outline" routerLink="/tests/listado-intentos">Volver</button>
             </div>
         </div>
     </div>
 </div>
-<app-modal *ngIf="modal && !resumen" 
-           [texto]="'¿Está seguro de abandonar el exámen?'"
-           (action)="getAction($event)"></app-modal>
-<app-modal *ngIf="modal && resumen" 
-           [texto]="'La funcionalidad no está disponible, disculpen las molestias.'"
-           (action)="getAction($event)"></app-modal>

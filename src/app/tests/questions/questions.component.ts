@@ -19,8 +19,7 @@ export class QuestionsComponent implements OnInit {
   i = 0;
   correctAnswers = [];
   waiting = false;
-
-  templateHTML = `<p>Pepe</p><p>Juan</p>`;
+  waitingInit = true;
 
   form: FormGroup;
   answersData: any = [];
@@ -68,8 +67,10 @@ export class QuestionsComponent implements OnInit {
                               answerRadio: ''
                             })
                           }
+                          this.waitingInit = false;
                         },(err: any)=>{
-                          console.log(err);
+                          this.waitingInit = false;
+                          this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');
                         })
   }
 

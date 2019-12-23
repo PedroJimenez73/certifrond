@@ -4,11 +4,18 @@
 
 export const environment = {
   production: false,
+  urlSocket: 'http://localhost:3000',
   urlAuth: 'http://localhost:3000/auth',
   urlUsuarios: 'http://localhost:3000/usuario',
   urlExamenes: 'http://localhost:3000/examen',
   urlIntentos: 'http://localhost:3000/intento',
   urlImagenes: 'http://localhost:3000/imagenes'
+  // urlSocket: 'http://34.248.135.204:3000',
+  // urlAuth: 'http://34.248.135.204:3000/auth',
+  // urlUsuarios: 'http://34.248.135.204:3000/usuario',
+  // urlExamenes: 'http://34.248.135.204:3000/examen',
+  // urlIntentos: 'http://34.248.135.204:3000/intento',
+  // urlImagenes: 'http://34.248.135.204:3000/imagenes'
 };
 
 /*

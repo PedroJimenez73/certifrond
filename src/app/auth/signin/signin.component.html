@@ -34,9 +34,11 @@
                 <button type="button" *ngIf="signInForm.invalid" (click)="showValidacion()">
                     Crear cuenta
                 </button>
-                <button *ngIf="signInForm.valid" type="submit">
-                        <span *ngIf="!waiting">Crear cuenta</span>
-                        <span *ngIf="waiting" style="display: flex;"><div class="spinner-white"></div> Espere...</span>
+                <button *ngIf="signInForm.valid && !waiting" type="submit">
+                        Crear cuenta
+                </button>
+                <button type="button" *ngIf="waiting">
+                        <span style="display: flex;"><div class="spinner-white"></div> Espere...</span>
                 </button>
             </div>
         </div>

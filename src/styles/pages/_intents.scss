@@ -1,0 +1,32 @@
+.intentos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between !important;
+    align-items: center;
+    width: 100%;
+    border-bottom: 0.5px solid $gris-claro;
+    display: block;
+
+    p:first-child {
+        font-weight: bold;
+        color: #545359;
+        margin-bottom: 0.5em;
+    }
+
+    p:nth-child(2) {
+        @include flex-row(flex-start, center);
+    }
+
+    span {
+        color: $gris-claro-font;
+        font-size: 16px;
+        font-family: $fuente-numeros;
+        @include flex-row(flex-start, center);
+
+        img {
+            height: 16px;
+        }
+    }
+
+
+}

@@ -31,6 +31,11 @@
 }
 
 @media (max-width: 540px) {
+
+    .card {
+        margin-bottom: 1em;
+    }
+
     .header-card {
         padding: 0.5em;
     }
@@ -109,6 +114,13 @@
             @include flex-column(center, center);
         }
     
+    }
+}
+
+@media (max-width: 540px) {
+    .card.jumbo,
+    .card.side {
+        width: calc(100% - 1em);
     }
 }
 
