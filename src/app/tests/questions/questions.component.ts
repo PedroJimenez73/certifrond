@@ -53,7 +53,7 @@ export class QuestionsComponent implements OnInit {
                         .subscribe((res:any)=>{
                           this.exam = res.exam;
                           this.exam.questions.forEach(q => {
-                            this.results.push([]);
+                            this.results.push(['']);
                           })
                           this.answersData = this.exam.questions[this.i].answers;
                           this.multi = this.exam.questions[this.i].multi;

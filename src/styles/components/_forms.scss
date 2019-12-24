@@ -41,6 +41,15 @@ label {
     margin-bottom: 0.5em;
 }
 
+label.incorrecta {
+    border: 2px solid $rojo;
+}
+
+label.correcta,
+label.correcta.incorrecta {
+    border: 2px solid $verde;
+}
+
 select {
     font-family: $fuente;
     font-size: 1em;

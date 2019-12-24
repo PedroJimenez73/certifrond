@@ -135,6 +135,7 @@ form.questions {
 } 
 
 .question-buttons {
+    margin-top: 1.5em;
     @include flex-row(flex-end, center);
 }
 

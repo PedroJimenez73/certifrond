@@ -18,17 +18,23 @@
                 </div>
                 <form [formGroup]="form" class="questions">
                     <div class="questions" *ngIf="multi === false">
-                        <label class="answer" *ngFor="let answer of answersData; let i = index">
+                        <label #labelsRef class="answer" *ngFor="let answer of answersData; let i = index">
                             <input disabled type="radio" name="answerRadio" formControlName="answerRadio" value="{{abcAnswers[i]}}">
                             {{abcAnswers[i]}}.- {{answer}}
                         </label>
                     </div>
                     <div class="questions" *ngIf="multi === true">
-                        <label class="answer" formArrayName="answers" *ngFor="let answer of form.controls.answers.controls; let i = index">
+                        <label #labelsRef class="answer" formArrayName="answers" *ngFor="let answer of form.controls.answers.controls; let i = index">
                             <input disabled type="checkbox" [formControlName]="i">
                             {{abcAnswers[i]}}.- {{answersData[i]}}
                         </label>
                     </div>
+                    <!-- <div class="questions">
+                        <p>Feedback:</p>
+                        <p>{{exam.questions[i].feedback.explanation}}</p>
+                        <p>Reference:</p>
+                        <p><a [href]="exam.questions[i].feedback.reference" target="_blank">{{exam.questions[i].feedback.reference}}</a></p>
+                    </div> -->
                     <div class="question-buttons">
                         <button class="outline" *ngIf="i !== 0" (click)="setQuestion(-1)">
                             Anterior
