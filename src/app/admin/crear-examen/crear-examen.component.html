@@ -1,0 +1,63 @@
+<app-breadcrumb [rutas]="[{texto:'Inicio', ruta:'/'},{texto:'Admin', ruta:'/admin'}, {texto: 'Nuevo examen'}]"></app-breadcrumb>
+<div class="contenedor fondo-gris">
+    <div class="contenido para-friso">
+        <div class="card questions" appLoadFade>
+            <div class="header-card">
+                <h1>Nuevo examen</h1>
+            </div>
+            <hr>
+            <div class="body-card">
+                <form [formGroup]="examForm" (ngSubmit)="sendExam()">
+                    <div class="fila">
+                        <div class="col-100 pila">
+                            <label for="title">Título</label>
+                            <input id="title" type="text" formControlName="title">
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="col-25 pila">
+                            <label for="code">Código</label>
+                            <input id="code" type="text" formControlName="code">
+                        </div>
+                        <div class="col-25 pila">
+                            <label for="manufacturer">Fabricante</label>
+                            <select id="manufacturer" formControlName="manufacturer">
+                                <option value="">Seleccionar...</option>
+                                <option value="vmware">VMware</option>
+                                <option value="cisco">Cisco</option>
+                            </select>
+                        </div>
+                        <div class="col-25 pila">
+                            <label for="duration">Duración (minutos)</label>
+                            <input id="duration" type="number" formControlName="duration">
+                        </div>
+                        <div class="col-25 pila">
+                            <label for="production">Producción</label>
+                            <select id="production" formControlName="production">
+                                <option value=false>Próximamente</option>
+                                <option value=true>Disponible</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="col-100 pila">
+                            <label for="description">Descripción</label>
+                            <textarea id="description" formControlName="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="col-100 botones">
+                            <button class="outline" type="button" routerLink="/admin">Cancelar</button>
+                            <button class="m-l-small" type="submit" *ngIf="!waiting">
+                                Crear examen
+                            </button>
+                            <button type="button" *ngIf="waiting">
+                                <span style="display: flex;"><div class="spinner-white"></div> Espere...</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

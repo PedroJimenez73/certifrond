@@ -16,6 +16,8 @@ export class QuestionsComponent implements OnInit {
   id: string;
   intentoId: string;
   exam: any = {};
+  rutas: any;
+
   i = 0;
   correctAnswers = [];
   waiting = false;
@@ -50,8 +52,12 @@ export class QuestionsComponent implements OnInit {
     this.id = this.route.snapshot.params.id;
     this.intentoId = this.route.snapshot.params.intentoId;
     this.testsService.getExam(this.id)
-                        .subscribe((res:any)=>{
-                          this.exam = res.exam;
+                        .subscribe((res:any) => {
+                          this.exam = res.examen;
+                          this.rutas = [{texto:'Inicio',ruta:'/'},
+                                        {texto: this.exam.code, ruta:`/tests/exam/${this.exam._id}`},
+                                        {texto: 'Examen en curso'}
+                                      ];
                           this.exam.questions.forEach(q => {
                             this.results.push(['']);
                           })

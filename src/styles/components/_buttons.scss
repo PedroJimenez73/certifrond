@@ -20,6 +20,10 @@ button {
     }
 }
 
+button.mini {
+    padding: 0.3em 0.6em;
+}
+
 button.outline {
     background-color: white;
     border: 1px solid $azul;
@@ -34,27 +38,40 @@ button.outline {
 }
 
 button.success {
-    background-color: white;
+    background-color: $verde;
     border: 1px solid $verde;
-    color: $verde;
+    color: white;
 
     &:hover {
         border: 1px solid $verde-hover;
-        background-color: white;
-        color: $verde-hover;
+        background-color: $verde-hover;
+        color: white;
+        box-shadow: 0 9px 16px 0 rgba(88,103,221,.25);
+    }
+}
+
+button.warning {
+    background-color: $amarillo;
+    border: 1px solid $amarillo;
+    color: white;
+
+    &:hover {
+        border: 1px solid $amarillo-hover;
+        background-color: $amarillo-hover;
+        color: white;
         box-shadow: 0 9px 16px 0 rgba(88,103,221,.25);
     }
 }
 
 button.danger {
-    background-color: white;
+    background-color: $rojo;
     border: 1px solid $rojo;
-    color: $rojo;
+    color: white;
 
     &:hover {
         border: 1px solid $rojo-hover;
-        background-color: white;
-        color: $rojo-hover;
+        background-color: $rojo-hover;
+        color: white;
         box-shadow: 0 9px 16px 0 rgba(88,103,221,.25);
     }
 }

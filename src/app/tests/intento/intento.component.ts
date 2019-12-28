@@ -33,6 +33,7 @@ export class IntentoComponent implements OnInit {
 
   @ViewChildren('labelsRef') labelsRef: QueryList<ElementRef>;
   elementosLabelsRef = [];
+  rutas: ({ texto: string; ruta: string; } | { texto: string; ruta?: undefined; })[];
 
   constructor(private route: ActivatedRoute,
               private testsService: TestsService,
@@ -52,7 +53,11 @@ export class IntentoComponent implements OnInit {
     this.intentoId = this.route.snapshot.params.intentoId;
     this.testsService.getExam(this.id)
                         .subscribe((res:any)=>{
-                          this.exam = res.exam;
+                          this.exam = res.examen;
+                          this.rutas = [{texto:'Inicio',ruta:'/'},
+                            {texto: 'Resultados anteriores', ruta:`/tests/listado-intentos/${this.exam._id}`},
+                            {texto: this.exam.title.substring(0, 10) + '...'}
+                          ];
                           this.exam.questions.forEach(q => {
                             this.results.push([]);
                           })
@@ -78,12 +83,14 @@ export class IntentoComponent implements OnInit {
                             this.intento = res.intento;
                             if(this.intento.resultados !== undefined) {
                               this.results = this.intento.resultados;
+                              this.setQuestion(0);
                             } else {
                               this.exam.questions.forEach(q => {
                                 this.results.push(['']);
+                                this.setQuestion(0);
                               })
                             }
-                            this.setQuestion(0);
+                            
                           },(err: any)=>{
                             this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');  
                           })
@@ -159,7 +166,7 @@ export class IntentoComponent implements OnInit {
 
   endExam() {
     this.resumen = true;
-    this.intento.correctas.forEach(correcta =>{
+    this.intento.correctas.forEach(correcta => {
       if(correcta) {
         this.acertadas++;
       }

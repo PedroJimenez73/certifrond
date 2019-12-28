@@ -1,4 +1,4 @@
-<app-breadcrumb></app-breadcrumb>
+<app-breadcrumb [rutas]="rutas"></app-breadcrumb>
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso">
         <app-spinner *ngIf="waitingInit"></app-spinner>
@@ -10,7 +10,7 @@
             <div class="body-card">
                 <div class="resumen">
                     <div class="datos">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ad magnam quibusdam officia doloribus unde excepturi dolorem, nemo voluptas maiores eos adipisci, ipsam ratione similique assumenda aut aliquid totam recusandae?</p>
+                        <p>{{exam?.description}}</p>
                         <p class="features"><span>DURACIÓN </span> {{exam?.duration}}'</p> 
                         <p class="features"><span>Nº PREGUNTAS </span> {{exam?.questions.length}}</p> 
                     </div>
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="footer-card">
-                <button class="outline" routerLink="/tests/listado-intentos">Ver resultados anteriores</button>
+                <button class="outline" routerLink="/tests/listado-intentos/{{exam._id}}">Ver resultados anteriores</button>
                 <button class="m-l-small" *ngIf="!waiting" type="submit" (click)="startExam()">
                         Nuevo intento
                 </button>
@@ -33,10 +33,10 @@
             </div>
             <hr>
             <div class="body-card">
-                <div class="stats">
-                    <p>Nº INTENTOS <span class="badge info">?</span></p> 
-                    <p>RESULTADOS <span class="badge success">?/?</span></p> 
-                    <p>ÚLTIMO INTENTO <span class="badge warning">?/?/?</span></p> 
+                <div class="stats" *ngIf="intentos">
+                    <p>Nº INTENTOS <span class="badge info">{{intentos.length}}</span></p> 
+                    <p>RESULTADOS <span class="badge success">{{percentPass}} %</span></p> 
+                    <p>ÚLTIMO INTENTO <span class="badge warning">{{intentos[0].fecha | date:'dd/MM/yy'}}</span></p> 
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<app-breadcrumb></app-breadcrumb>
+<app-breadcrumb [rutas]="rutas"></app-breadcrumb>
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso" *ngIf="!waiting" >
         <!-- <app-spinner *ngIf="waiting"></app-spinner> -->
@@ -9,7 +9,7 @@
             <hr>
             <div class="body-card intentos" *ngFor="let intento of intentos">
                     <div>
-                        <p>{{intento.examen | suspensivos: 40}}</p>
+                        <p>{{intento.examen.title | suspensivos: 40}}</p>
                         <p>
                             <span><img src="assets/clock.svg">&nbsp;{{intento.fecha | date:'dd/MM/yyyy'}}&nbsp;</span>                      
                             <span *ngIf="intento.acertadas !== undefined && (intento.acertadas/intento.correctas.length) >= 0.5"><img src="assets/check-circle.svg">&nbsp;{{intento.acertadas}}/{{intento.correctas.length}}</span>
@@ -18,7 +18,7 @@
                         </p>
                     </div>
                     <div>
-                        <button class="info" routerLink="intento/{{userId}}/{{intento._id}}">
+                        <button class="info" routerLink="/tests/listado-intentos/intento/{{intento.examen._id}}/{{intento._id}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="bevel"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </button>
                     </div>                    

@@ -16,6 +16,11 @@ export class ExamComponent implements OnInit {
   modal = false;
   waiting = false;
   waitingInit = true;
+  rutas: any;
+
+  intentos: any;
+  passed: number = 0;
+  percentPass: number;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -27,7 +32,9 @@ export class ExamComponent implements OnInit {
     this.id = this.route.snapshot.params.id;
     this.testsService.getExam(this.id)
             .subscribe((res:any)=>{
-              this.exam = res.exam;
+              this.exam = res.examen;
+              this.rutas = [{texto:'Inicio',ruta:'/'},{texto: this.exam.code}];
+              this.getIntentos(this.exam._id);
               this.waitingInit = false;
               }, (res: any)=>{
                 this.waitingInit = false;
@@ -35,10 +42,36 @@ export class ExamComponent implements OnInit {
               })
   }
 
+  getIntentos(id) {
+    this.intentosService.getIntentosExam(id)
+            .subscribe((res: any)=>{
+              this.intentos = res.intentos;
+              for(let i=0; i < this.intentos.length; i++) {
+                if(this.intentos[i].correctas) {
+                  this.intentos[i].acertadas = 0;
+                  this.intentos[i].correctas.forEach(correcta => {
+                    if(correcta) {
+                      this.intentos[i].acertadas++;
+                    }
+                  });
+                  if((this.intentos[i].acertadas / this.intentos[i].correctas.length) >= 0.5){
+                    this.passed++;
+                  }
+                } 
+              }
+              this.percentPass = Math.floor((this.passed/this.intentos.length)*100);
+            }, (err: any)=>{
+              console.log(err);
+            })
+  }
+
   startExam() {
     this.waiting = true;
     const intento = {
-      examen: this.exam.title
+      examen: {
+        title: this.exam.title,
+        _id: this.exam._id
+      }
     }
     this.intentosService.postIntento(intento)
                 .subscribe((res: any)=>{

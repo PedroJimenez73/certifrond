@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IntentosService } from '../intentos.service';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listado-intentos',
@@ -10,19 +11,27 @@ import { AuthService } from 'src/app/servicios/auth.service';
 export class ListadoIntentosComponent implements OnInit {
 
   intentos: any;
+  id: string;
   passed: number = 0;
   percentPass: number;
   userId: any;
+  rutas: any;
 
   constructor(private intentosService: IntentosService,
+              private route: ActivatedRoute,
               private authService: AuthService) { 
                 this.userId = this.authService.id;
   }
 
   ngOnInit() {
-    this.intentosService.getIntentos()
+    this.id = this.route.snapshot.params.id;
+    this.intentosService.getIntentosExam(this.id)
               .subscribe((res: any)=>{
                 this.intentos = res.intentos;
+                this.rutas = [{texto:'Inicio',ruta:'/'},
+                  {texto: 'Resumen de resultados', ruta:'/tests/resumen-intentos'},
+                  {texto: this.intentos[0].examen.title.substring(0, 10) + '...'}
+                ];
                 for(let i=0; i < this.intentos.length; i++) {
                   if(this.intentos[i].correctas) {
                     this.intentos[i].acertadas = 0;

@@ -91,6 +91,20 @@
 
 }
 
+.card.exams {
+    width: calc(100% - 2em);
+
+    .header-card,
+    .body-card {
+        height: auto;
+    }
+
+    .header-card {
+        padding: 1em;
+        @include flex-row(space-between, center);
+    }
+}
+
 @media (max-width: 960px) {
     .card.jumbo,
     .card.side {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,14 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BreadcrumbComponent implements OnInit {
 
-  rutas:any;
+  @Input() rutas;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-      this.route.data.subscribe(data => {
-        this.rutas = data.rutas;
-      })
+
   }
 
 }

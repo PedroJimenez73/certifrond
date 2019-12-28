@@ -131,6 +131,16 @@
     }
 }
 
+.col-25 {
+    width: 25%;
+    padding: 0.5em;
+    @include flex-row(flex-start, center);
+    
+    &.pila {
+        @include flex-column (flex-start, flex-start);
+    }
+}
+
 .m-t-1em {
     margin-top: 1em;
 }

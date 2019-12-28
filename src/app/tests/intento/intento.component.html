@@ -1,4 +1,4 @@
-<app-breadcrumb></app-breadcrumb>
+<app-breadcrumb [rutas]="rutas"></app-breadcrumb>
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso">
         <app-spinner *ngIf="waitingInit"></app-spinner>
@@ -7,7 +7,6 @@
                 <h1>{{exam?.title}}</h1>
                 <div class="answers-data">
                     {{i + 1}} / {{exam.questions.length}}
-                    <button class="m-l-small" *ngIf="!resumen" routerLink="/tests/listado-intentos">Salir</button>
                 </div>
             </div>
             <hr>
@@ -66,7 +65,7 @@
                 </div>
             </div>
             <div class="footer-card" *ngIf="resumen && !waiting">
-                <button class="outline" routerLink="/tests/listado-intentos">Volver</button>
+                <button class="outline" routerLink="/tests/listado-intentos/{{exam._id}}">Volver</button>
             </div>
         </div>
     </div>

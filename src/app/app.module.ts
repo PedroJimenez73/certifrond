@@ -10,8 +10,8 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { LandpageComponent } from './landpage/landpage.component';
 import { NavComponent } from './nav/nav.component';
 import { ModalComponent } from './modal/modal.component';
-import { LoadFadeDirective } from './custom/load-fade.directive';
 import { AuthInterceptorService } from './auth-interceptor.service';
+import { ComunesModule } from './comunes/comunes.module';
 
 @NgModule({
   declarations: [
@@ -20,14 +20,14 @@ import { AuthInterceptorService } from './auth-interceptor.service';
     SigninComponent,
     LandpageComponent,
     NavComponent,
-    ModalComponent,
-    LoadFadeDirective
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ComunesModule
   ],
   providers: [    {
     provide: HTTP_INTERCEPTORS,

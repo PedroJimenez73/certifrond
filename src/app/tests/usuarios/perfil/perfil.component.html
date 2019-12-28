@@ -1,4 +1,4 @@
-<app-breadcrumb></app-breadcrumb>
+<app-breadcrumb [rutas]="rutas"></app-breadcrumb>
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso">
         <app-spinner *ngIf="waitingInit"></app-spinner>
@@ -61,11 +61,14 @@
             </div>
             <hr>
             <div class="body-card">
-                <div class="stats">
-                    <p>Nº INTENTOS <span class="badge info">?</span></p> 
-                    <p>RESULTADOS <span class="badge success">?/?</span></p> 
-                    <p>ÚLTIMO INTENTO <span class="badge warning">?/?/?</span></p> 
+                <div class="stats" *ngIf="intentos">
+                    <p>Nº INTENTOS <span class="badge info">{{intentos.length}}</span></p> 
+                    <p>RESULTADOS <span class="badge success">{{percentPass}} %</span></p> 
+                    <p>ÚLTIMO INTENTO <span class="badge warning">{{intentos[0].fecha | date:'dd/MM/yy'}}</span></p> 
                 </div>
+            </div>
+            <div class="footer-card">
+                <button routerLink="/tests/resumen-intentos">Ver resultados</button>
             </div>
         </div>
     </div>

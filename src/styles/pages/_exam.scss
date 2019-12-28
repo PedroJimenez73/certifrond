@@ -73,6 +73,8 @@
 
     span:nth-child(1) {
         @include flex-row(center, center);
+        min-height: 40px;
+        min-width: 40px;
         border-radius: 30px;
         background-color: $verde;
         color: white;
@@ -96,6 +98,42 @@
                 line-height: 1.5;
             }
         }
+    }
+
+}
+
+.question.answers-list {
+
+    @include flex-row(space-between, center);
+    width: 100%;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 0.5px solid $gris-claro;
+
+    div {
+        @include flex-row(flex-start, center);
+
+        span:nth-child(1) {
+            @include flex-row(center, center);
+            min-height: 40px;
+            min-width: 40px;
+            height: 40px;
+            width: 40px;
+            border-radius: 30px;
+            background-color: $verde;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 10px;
+            margin-right: 0.5em;
+        }
+    
+        span:nth-child(2) {
+            margin: 8px 0;
+            font-size: 1em;
+            line-height: 1.5;
+            font-weight: initial;
+        }
+    
     }
 
 }

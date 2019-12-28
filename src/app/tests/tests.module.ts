@@ -6,87 +6,66 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ExamComponent } from './exam/exam.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { PerfilComponent } from './usuarios/perfil/perfil.component';
-import { LoadFadeDirective } from './load-fade.directive';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ModalComponent } from './modal/modal.component';
 import { ListadoIntentosComponent } from './listado-intentos/listado-intentos.component';
 import { IntentoComponent } from './intento/intento.component';
-import { SuspensivosPipe } from './suspensivos.pipe';
+import { ResumenIntentosComponent } from './resumen-intentos/resumen-intentos.component';
+import { ComunesModule } from '../comunes/comunes.module';
 
 const routes: Routes = [
   {
     path:'', 
-    component: InicioTestsComponent,
-    data: {rutas: [{texto:'Inicio'}]}
+    component: InicioTestsComponent
   },
   {
     path:'exam/:id', 
-    component: ExamComponent,
-    data: { rutas: [
-        {ruta:'/tests', texto:'Inicio'},
-        {texto:'Certified Exam'}
-      ] 
-    }
+    component: ExamComponent
   },
   {
     path:'questions/:id/:intentoId', 
-    component: QuestionsComponent,
-    data: { rutas: [
-      {ruta:'/tests', texto:'Inicio'},
-      {texto:'Certified Exam'}
-      ] 
-    }
+    component: QuestionsComponent
   },
   {
-    path:'listado-intentos', 
-    component: ListadoIntentosComponent,
-    data: { rutas: [
-      {ruta:'/tests', texto:'Inicio'},
-      {texto:'Intentos'}
-      ] 
-    }
+    path:'listado-intentos/:id', 
+    component: ListadoIntentosComponent
+  },
+  {
+    path:'resumen-intentos', 
+    component: ResumenIntentosComponent
   },
   {
     path:'listado-intentos/intento/:id/:intentoId', 
-    component: IntentoComponent,
-    data: { rutas: [
-        {ruta:'/tests', texto:'Inicio'},
-        {ruta:'/tests/listado-intentos', texto:'Intentos'},
-        {texto:'Intento'}
-      ] 
-    }
+    component: IntentoComponent
   },
   {
     path: 'perfil/:id', 
     component: PerfilComponent,
-    data: {rutas: [{ruta:'/', texto:'Inicio'}, {texto: 'Mi cuenta'}]}
   },
 ];
 
 @NgModule({
   declarations: [
     InicioTestsComponent,
-    BreadcrumbComponent,
     ExamComponent,
     QuestionsComponent,
     PerfilComponent,
-    LoadFadeDirective,
     SpinnerComponent,
     ModalComponent,
     ListadoIntentosComponent,
     IntentoComponent,
-    SuspensivosPipe
+    ResumenIntentosComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     HttpClientModule,
-    FileUploadModule
+    FileUploadModule,
+    ComunesModule
   ]
 })
 export class TestsModule { }

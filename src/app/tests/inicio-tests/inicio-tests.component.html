@@ -1,4 +1,4 @@
-<app-breadcrumb></app-breadcrumb>
+<app-breadcrumb [rutas]="[{texto:'Inicio', ruta:'/'}]"></app-breadcrumb>
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso grid" *ngIf="!waiting" >
         <div class="card" *ngFor="let exam of exams" appLoadFade>
@@ -7,7 +7,7 @@
             </div>
             <hr>
             <div class="body-card">
-                <img src="{{exam.pic}}">
+                <img [src]="exam.pic">
             </div>
             <div class="footer-card">
                 <button *ngIf="exam.production" routerLink="exam/{{exam._id}}">Acceder</button>

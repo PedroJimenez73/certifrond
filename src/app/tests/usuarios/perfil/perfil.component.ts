@@ -5,6 +5,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { IntentosService } from '../../intentos.service';
 
 @Component({
   selector: 'app-perfil',
@@ -15,6 +16,7 @@ export class PerfilComponent implements OnInit {
 
   profileForm: FormGroup;
   id: any;
+  rutas: any;
   usuario: any;
   waiting = false;
   waitingInit = true;
@@ -25,10 +27,15 @@ export class PerfilComponent implements OnInit {
   imageSrc: any;
   public uploader:FileUploader = new FileUploader({url: this.urlImagenes});
 
+  intentos: any;
+  passed: number = 0;
+  percentPass: number;
+
   constructor(private ff: FormBuilder,
               private usuariosService: UsuariosService,
               private router: Router,
               private route: ActivatedRoute,
+              private intentosService: IntentosService,
               private authService: AuthService) { }
 
   ngOnInit() {
@@ -43,6 +50,11 @@ export class PerfilComponent implements OnInit {
     this.usuariosService.getUsuario(this.id)
             .subscribe((res:any)=>{
               this.usuario = res.usuario;
+              this.rutas = [
+                {texto:'Inicio',ruta:'/'},
+                {texto: this.usuario.nombre}
+              ];
+              this.getIntentos();
               this.profileForm.get('nombre').setValue(this.usuario.nombre);
               this.profileForm.get('email').setValue(this.usuario.email);
               this.profileForm.get('direccion').setValue(this.usuario.direccion);
@@ -58,6 +70,29 @@ export class PerfilComponent implements OnInit {
     this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
       form.append('imagen', this.imagen);
     };
+  }
+
+  getIntentos() {
+    this.intentosService.getIntentos()
+            .subscribe((res: any)=>{
+              this.intentos = res.intentos;
+              for(let i=0; i < this.intentos.length; i++) {
+                if(this.intentos[i].correctas) {
+                  this.intentos[i].acertadas = 0;
+                  this.intentos[i].correctas.forEach(correcta => {
+                    if(correcta) {
+                      this.intentos[i].acertadas++;
+                    }
+                  });
+                  if((this.intentos[i].acertadas / this.intentos[i].correctas.length) >= 0.5){
+                    this.passed++;
+                  }
+                } 
+              }
+              this.percentPass = Math.floor((this.passed/this.intentos.length)*100);
+            }, (err: any)=>{
+              console.log(err);
+            })
   }
 
   sendUser() {

@@ -16,6 +16,12 @@ const routes: Routes = [
     data: {rutas: [{ruta:'/tests', texto:'Inicio'}]},
     canActivate: [AuthGuard]
   },
+  {
+    path: 'admin', 
+    loadChildren: './admin/admin.module#AdminModule',
+    data: {rutas: [{ruta:'/admin', texto:'Inicio'}]},
+    //canActivate: [AuthGuard]
+  },
   // {path:'**', component: LoginComponent}
 ];
 

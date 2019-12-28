@@ -1,3 +1,21 @@
+form {
+    width: 100%;
+}
+
+.abc {
+    @include flex-row(center, center);
+    min-height: 40px;
+    min-width: 40px;
+    height: 40px;
+    width: 40px;
+    border-radius: 30px;
+    background-color: $verde;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    margin-right: 0.5em;
+}
+
 input {
     font-family: $fuente;
     font-size: 1em;
@@ -35,6 +53,16 @@ input.password {
 
 input:focus {
     outline: none;
+}
+
+input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+}
+
+label.check-inline {
+    @include flex-row(center,center);
+    margin: 0 1em;
 }
 
 label {
@@ -86,6 +114,21 @@ select {
     content: "\002296";
     padding-left: 5px;
     font-size: 20px;
+}
+
+textarea {
+    font-family: $fuente;
+    font-size: 1em;
+    line-height: 1.5;
+    border: none;
+    border-radius: 4px;
+    color: $gris-oscuro;
+    background-color: rgba(247,247,249,.7);
+    background-repeat: no-repeat;
+    background-position: 10px 14px;
+    background-size: 20px 20px;
+    padding: 0.8em 1em 0.8em 1em;
+    width: 100%;
 }
 
 @media (max-width: 540px) {

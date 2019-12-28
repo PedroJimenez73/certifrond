@@ -1,0 +1,21 @@
+<app-breadcrumb [rutas]="[{texto:'Inicio', ruta:'/'},{texto:'Resumen de resultados'}]"></app-breadcrumb>
+<div class="contenedor fondo-gris">
+    <div class="contenido para-friso">
+        <div class="card exams" appLoadFade>
+            <div class="header-card">
+                <h1>Resumen de resultados</h1>
+            </div>
+            <hr>
+            <div class="body-card intentos" *ngFor="let examen of examenes">
+                <div>
+                    <p>{{examen.title}}</p>
+                </div>
+                <div>
+                    <button class="info" routerLink="/tests/listado-intentos/{{examen._id}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="bevel"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                </div>                    
+            </div>
+        </div>
+    </div>
+</div>

@@ -36,8 +36,16 @@
         <span>Inicio</span>
     </div>
     <hr>
+    <div class="item" routerLink="/tests/resumen-intentos" (click)="toggleMenu()">
+        <span>Resultados anteriores</span>
+    </div> 
+    <hr>
     <div class="item" (click)="toggleOverlay(true); showModal()">
         <span>Ayuda y soporte</span>
+    </div> 
+    <hr>               
+    <div class="item" routerLink="/admin" (click)="toggleMenu()">
+        <span>Admin</span>
     </div>
     <div class="item">
         &copy; 2019 ISCA CONSULTING & QUALITY CLOUDWORKS

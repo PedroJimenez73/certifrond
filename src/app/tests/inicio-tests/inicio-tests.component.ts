@@ -31,7 +31,7 @@ export class InicioTestsComponent implements OnInit {
   loadExams() {
     this.testsService.getExams()
               .subscribe((res: any)=>{
-                this.exams = res.exams;
+                this.exams = res.examenes;
                 this.waiting = false;
               }, (err)=>{
                 this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');
