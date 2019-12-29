@@ -45,8 +45,32 @@ export class ExamenesService {
     );
   }
 
+  getQuestion(idExam, idQuestion) {
+    return this.http.get(this.urlExamenes + '/question/' + idExam + '/' + idQuestion).pipe(
+      map( (res: any) => {
+        return res;
+      })
+    );
+  }
+
   postQuestion(id, question) {
     return this.http.put(this.urlExamenes + '/question/' + id, question).pipe(
+      map( (res: any) => {
+        return res;
+      })
+    );
+  }
+
+  putQuestion(idExam, idQuestion, question) {
+    return this.http.put(this.urlExamenes + '/question/upd/' + idExam + '/' + idQuestion, question).pipe(
+      map( (res: any) => {
+        return res;
+      })
+    );
+  }
+
+  removeQuestion(idExam, idQuestion) {
+    return this.http.put(this.urlExamenes + '/question/del/' + idExam + '/' + idQuestion, 'actualizando').pipe(
       map( (res: any) => {
         return res;
       })

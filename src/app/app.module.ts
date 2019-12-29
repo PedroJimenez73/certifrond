@@ -9,7 +9,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { LandpageComponent } from './landpage/landpage.component';
 import { NavComponent } from './nav/nav.component';
-import { ModalComponent } from './modal/modal.component';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { ComunesModule } from './comunes/comunes.module';
 
@@ -19,8 +18,7 @@ import { ComunesModule } from './comunes/comunes.module';
     LoginComponent,
     SigninComponent,
     LandpageComponent,
-    NavComponent,
-    ModalComponent
+    NavComponent
   ],
   imports: [
     BrowserModule,

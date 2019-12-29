@@ -136,3 +136,35 @@ textarea {
         font-size: 0.9em;
     }
 }
+
+*[type="divarea"] {
+    width: 100%;
+}
+
+.cke {
+    border: none !important;
+}
+
+.cke_inner.cke_reset {
+    border: none !important;
+}
+
+.cke_contents.cke_reset {
+    background-color: rgba(247, 247, 249, 0.7) !important;
+    font-family: $fuente;
+    border-left: 4px solid rgba(247, 247, 249, 0.7) !important;
+    border-right: 4px solid rgba(247, 247, 249, 0.7) !important;
+}
+
+.cke_top.cke_reset_all,
+.cke_bottom.cke_reset_all {
+    background-color: rgba(247, 247, 249, 0.7) !important;
+    border: none !important;
+}
+
+.cke_top.cke_reset_all {
+    border-radius: 4px 4px 0 0;
+}
+.cke_bottom.cke_reset_all {
+    border-radius: 0 0 4px 4px;
+}

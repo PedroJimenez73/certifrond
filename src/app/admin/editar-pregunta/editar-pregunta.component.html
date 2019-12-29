@@ -1,9 +1,9 @@
-<app-breadcrumb [rutas]="[{texto:'Inicio', ruta:'/'},{texto:'Admin', ruta:'/admin'}, {texto: 'Nueva pregunta'}]"></app-breadcrumb>
+<app-breadcrumb [rutas]="[{texto:'Inicio', ruta:'/'},{texto:'Examen', ruta:'/admin'}, {texto: 'Editar pregunta'}]"></app-breadcrumb>
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso">
         <div class="card questions" appLoadFade>
             <div class="header-card">
-                <h1>Nueva pregunta</h1>
+                <h1>Editar pregunta</h1>
             </div>
             <hr>
             <div class="body-card">
@@ -55,9 +55,9 @@
                     </div>
                     <div class="fila">
                         <div class="col-100 botones">
-                            <button class="outline" type="button" routerLink="/admin/editar-examen/{{id}}">Cancelar</button>
+                            <button class="outline" type="button" routerLink="/admin/editar-examen/{{idExam}}">Cancelar</button>
                             <button class="m-l-small" type="submit" *ngIf="!waiting">
-                                Añadir pregunta
+                                Guardar cambios
                             </button>
                             <button type="button" *ngIf="waiting">
                                 <span style="display: flex;"><div class="spinner-white"></div> Espere...</span>
@@ -69,4 +69,3 @@
         </div>
     </div>
 </div>
-

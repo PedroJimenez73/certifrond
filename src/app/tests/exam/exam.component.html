@@ -33,7 +33,7 @@
             </div>
             <hr>
             <div class="body-card">
-                <div class="stats" *ngIf="intentos">
+                <div class="stats" *ngIf="intentos?.length > 0">
                     <p>Nº INTENTOS <span class="badge info">{{intentos.length}}</span></p> 
                     <p>RESULTADOS <span class="badge success">{{percentPass}} %</span></p> 
                     <p>ÚLTIMO INTENTO <span class="badge warning">{{intentos[0].fecha | date:'dd/MM/yy'}}</span></p> 

@@ -19,6 +19,7 @@ export class QuestionsComponent implements OnInit {
   rutas: any;
 
   i = 0;
+  corrects = [];
   correctAnswers = [];
   waiting = false;
   waitingInit = true;
@@ -61,8 +62,25 @@ export class QuestionsComponent implements OnInit {
                           this.exam.questions.forEach(q => {
                             this.results.push(['']);
                           })
-                          this.answersData = this.exam.questions[this.i].answers;
+                          this.exam.questions[this.i].answers.forEach((elem)=>{
+                            this.answersData.push(elem.answer);
+                          })
                           this.multi = this.exam.questions[this.i].multi;
+                          if(this.multi) {
+                            this.exam.questions[this.i].answers.forEach((elem, i)=>{
+                              if(elem.correct){
+                                this.corrects.push(this.abcAnswers[i]);
+                              } else {
+                                this.corrects.push('')
+                              }
+                            })
+                          } else {
+                            this.exam.questions[this.i].answers.forEach((elem, i)=>{
+                              if(elem.correct){
+                                this.corrects.push(this.abcAnswers[i]);
+                              } 
+                            })
+                          }
                           if (this.multi) { 
                             this.form = this.ff.group({
                               answers: new FormArray([])
@@ -102,7 +120,8 @@ export class QuestionsComponent implements OnInit {
     } else {
       this.results[this.i] = [this.form.get('answerRadio').value];
     }
-    if (String(this.results[this.i]) === String(this.exam.questions[this.i].corrects)) {
+    console.log(this.results[this.i],this.corrects);
+    if (String(this.results[this.i]) === String(this.corrects)) {
       this.correctAnswers[this.i] = true;
     } else {
       this.correctAnswers[this.i] = false;
@@ -117,8 +136,27 @@ export class QuestionsComponent implements OnInit {
                               console.log(res);
                               this.authService.setMensaje(res.mensaje, 'success')
                               this.i += cont;
-                              this.answersData = this.exam.questions[this.i].answers;
+                              this.answersData = [];
+                              this.exam.questions[this.i].answers.forEach((elem)=>{
+                                this.answersData.push(elem.answer);
+                              })
                               this.multi = this.exam.questions[this.i].multi;
+                              this.corrects = [];
+                              if(this.multi) {
+                                this.exam.questions[this.i].answers.forEach((elem, i)=>{
+                                  if(elem.correct){
+                                    this.corrects.push(this.abcAnswers[i]);
+                                  } else {
+                                    this.corrects.push('')
+                                  }
+                                })
+                              } else {
+                                this.exam.questions[this.i].answers.forEach((elem, i)=>{
+                                  if(elem.correct){
+                                    this.corrects.push(this.abcAnswers[i]);
+                                  } 
+                                })
+                              }
                               if (this.multi) { 
                                 this.form = this.ff.group({
                                   answers: new FormArray([])
@@ -157,8 +195,8 @@ export class QuestionsComponent implements OnInit {
     } else {
       this.results[this.i] = [this.form.get('answerRadio').value];
     }
-    console.log(this.results);
-    if (String(this.results[this.i]) === String(this.exam.questions[this.i].corrects)) {
+    console.log(this.results[this.i], this.corrects);
+    if (String(this.results[this.i]) === String(this.corrects)) {
       this.correctAnswers[this.i] = true;
     } else {
       this.correctAnswers[this.i] = false;

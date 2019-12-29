@@ -4,11 +4,13 @@ import { LoadFadeDirective } from './load-fade.directive';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { RouterModule } from '@angular/router';
 import { SuspensivosPipe } from './suspensivos.pipe';
+import { ModalComponent } from '../tests/modal/modal.component';
 
 @NgModule({
   declarations: [
     LoadFadeDirective,
     BreadcrumbComponent,
+    ModalComponent,
     SuspensivosPipe
   ],
   imports: [
@@ -18,6 +20,7 @@ import { SuspensivosPipe } from './suspensivos.pipe';
   exports: [
     LoadFadeDirective,
     BreadcrumbComponent,
+    ModalComponent,
     SuspensivosPipe
   ]
 })

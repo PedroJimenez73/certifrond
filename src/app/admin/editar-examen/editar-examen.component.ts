@@ -13,8 +13,10 @@ export class EditarExamenComponent implements OnInit {
   examForm: FormGroup;
   waiting = false;
   id: string;
+  i: number;
   preguntas: any;
   examen: any;
+  modal = false;
 
   constructor(private fr: FormBuilder,
               private router: Router,
@@ -31,6 +33,10 @@ export class EditarExamenComponent implements OnInit {
       production: [false, Validators.required],
       description: ''
     });
+    this.loadExam();
+  }
+
+  loadExam() {
     this.examenesService.getExamen(this.id)
                           .subscribe((res: any)=>{
                             this.examen = res.examen;
@@ -64,6 +70,34 @@ export class EditarExamenComponent implements OnInit {
       }, (error: any) => {
         this.waiting = false;
       });
+  }
+
+  deleteQuestion(i) {
+    this.examenesService.removeQuestion(this.id, i)
+    .subscribe((res: any) => {
+      this.waiting = false;
+      this.loadExam();
+    }, (error: any) => {
+      this.waiting = false;
+    });
+  }
+
+  showModal(i) {
+    this.i = i;
+    this.modal = true;
+  }
+
+  hideModal() {
+    this.modal = false;
+  }
+
+  getAction(event) {
+    if(event.action) {
+      this.deleteQuestion(event.parametro);
+      this.hideModal();
+    } else {
+      this.hideModal();
+    }
   }
 
 }

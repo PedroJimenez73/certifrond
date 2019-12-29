@@ -4,16 +4,18 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ExamenesService } from '../examenes.service';
 
 @Component({
-  selector: 'app-crear-pregunta',
-  templateUrl: './crear-pregunta.component.html',
-  styleUrls: ['./crear-pregunta.component.scss']
+  selector: 'app-editar-pregunta',
+  templateUrl: './editar-pregunta.component.html',
+  styleUrls: ['./editar-pregunta.component.scss']
 })
-export class CrearPreguntaComponent implements OnInit {
+export class EditarPreguntaComponent implements OnInit {
 
   questionForm: FormGroup;
   waiting = false;
-  id: string;
+  idExam: string;
+  idQuestion: string
   abcAnswers = ['A','B','C','D','E','F','G','H','I','J'];
+  pregunta: any;
 
   config = {
     // toolbar: [
@@ -47,7 +49,8 @@ export class CrearPreguntaComponent implements OnInit {
               private examenesService: ExamenesService) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params.id;
+    this.idExam = this.route.snapshot.params.idExam;
+    this.idQuestion = this.route.snapshot.params.idQuestion;
     this.questionForm = this.fr.group({
       question: '',
       section: '',
@@ -56,6 +59,16 @@ export class CrearPreguntaComponent implements OnInit {
       ]),
       feedback: ''
     });
+    this.examenesService.getQuestion(this.idExam, this.idQuestion)
+                    .subscribe((res: any)=>{
+                      this.pregunta = res.pregunta;
+                      this.questionForm.get('question').setValue(res.pregunta.question);
+                      this.questionForm.get('section').setValue(res.pregunta.section);
+                      this.patchForm();
+                      this.questionForm.get('feedback').setValue(res.pregunta.feedback.explanation);
+                    }, (err)=>{
+
+                    })
   }
 
   initItem(){
@@ -75,7 +88,19 @@ export class CrearPreguntaComponent implements OnInit {
     control.removeAt(i)
   }
 
+  patchForm(){
+    const control = <FormArray>this.questionForm.controls['items'];
+    this.pregunta.answers.forEach((element,i) => {
+      control.push(this.fr.group({
+        answer: element.answer,
+        correct: element.correct
+      }))
+    });
+    this.removeItem(0);
+  }
+
   sendQuestion() {
+    //this.verMensaje = false;
     //this.verMensaje = false;
     let corrects = 0;
     let multi;
@@ -95,15 +120,16 @@ export class CrearPreguntaComponent implements OnInit {
       multi: multi,
       section: this.questionForm.get('section').value,
       answers: answers,
+      corrects: corrects,
       feedback: {
         explanation: this.questionForm.get('feedback').value
       }
     };
     this.waiting = true;
-    this.examenesService.postQuestion(this.id, question)
+    this.examenesService.putQuestion(this.idExam, this.idQuestion, question)
       .subscribe( (res: any) => {
         this.waiting = false;
-        this.router.navigate(['/admin/editar-examen/' + this.id]);
+        this.router.navigate(['/admin/editar-examen/' + this.idExam]);
       }, (error: any) => {
         this.waiting = false;
       });

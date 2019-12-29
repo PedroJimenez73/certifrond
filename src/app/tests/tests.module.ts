@@ -10,7 +10,6 @@ import { ExamComponent } from './exam/exam.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { PerfilComponent } from './usuarios/perfil/perfil.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { ModalComponent } from './modal/modal.component';
 import { ListadoIntentosComponent } from './listado-intentos/listado-intentos.component';
 import { IntentoComponent } from './intento/intento.component';
 import { ResumenIntentosComponent } from './resumen-intentos/resumen-intentos.component';
@@ -54,7 +53,6 @@ const routes: Routes = [
     QuestionsComponent,
     PerfilComponent,
     SpinnerComponent,
-    ModalComponent,
     ListadoIntentosComponent,
     IntentoComponent,
     ResumenIntentosComponent

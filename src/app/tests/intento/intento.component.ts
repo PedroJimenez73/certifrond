@@ -61,7 +61,9 @@ export class IntentoComponent implements OnInit {
                           this.exam.questions.forEach(q => {
                             this.results.push([]);
                           })
-                          this.answersData = this.exam.questions[this.i].answers;
+                          this.exam.questions[this.i].answers.forEach((elem)=>{
+                            this.answersData.push(elem.answer);
+                          })
                           this.multi = this.exam.questions[this.i].multi;
                           if (this.multi) { 
                             this.form = this.ff.group({
@@ -112,7 +114,10 @@ export class IntentoComponent implements OnInit {
 
   setQuestion(cont) {
     this.i += cont;
-    this.answersData = this.exam.questions[this.i].answers;
+    this.answersData = [];
+    this.exam.questions[this.i].answers.forEach((elem)=>{
+      this.answersData.push(elem.answer);
+    })
     this.multi = this.exam.questions[this.i].multi;
     if (this.multi) { 
       this.form = this.ff.group({
@@ -131,8 +136,10 @@ export class IntentoComponent implements OnInit {
       }
     }
     let indexCorrects = [];
-    this.exam.questions[this.i].corrects.forEach(elem => {
-      indexCorrects.push(this.abcAnswers.indexOf(elem));
+    this.exam.questions[this.i].answers.forEach((elem, i) => {
+      if(elem.correct) {
+        indexCorrects.push(i);
+      }
     });  
     this.cd.detectChanges();
     this.elementosLabelsRef = [];
