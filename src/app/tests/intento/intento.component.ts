@@ -85,14 +85,17 @@ export class IntentoComponent implements OnInit {
                             this.intento = res.intento;
                             if(this.intento.resultados !== undefined) {
                               this.results = this.intento.resultados;
-                              this.setQuestion(0);
+                              setTimeout(()=>{
+                                this.setQuestion(0);
+                              }, 300);
                             } else {
                               this.exam.questions.forEach(q => {
                                 this.results.push(['']);
-                                this.setQuestion(0);
+                                setTimeout(()=>{
+                                  this.setQuestion(0);
+                                }, 300);
                               })
                             }
-                            
                           },(err: any)=>{
                             this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');  
                           })

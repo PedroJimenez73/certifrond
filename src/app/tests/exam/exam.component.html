@@ -2,7 +2,7 @@
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso">
         <app-spinner *ngIf="waitingInit"></app-spinner>
-        <div class="card jumbo" *ngIf="!waitingInit" appLoadFade>
+        <div class="card jumbo" *ngIf="!waitingInit && exam !== undefined" appLoadFade>
             <div class="header-card">
                 <h1>{{exam?.title}}</h1>
             </div>
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="footer-card">
-                <button class="outline" routerLink="/tests/listado-intentos/{{exam._id}}">Ver resultados anteriores</button>
+                <button class="outline" *ngIf="intentos?.length > 0" routerLink="/tests/listado-intentos/{{exam._id}}">Ver resultados anteriores</button>
                 <button class="m-l-small" *ngIf="!waiting" type="submit" (click)="startExam()">
                         Nuevo intento
                 </button>
@@ -27,7 +27,7 @@
                 </button>
             </div>
         </div>
-        <div class="card side" *ngIf="!waitingInit" appLoadFade>
+        <div class="card side" *ngIf="!waitingInit && intentos !== undefined" appLoadFade>
             <div class="header-card">
                 <h1>Stats</h1>
             </div>

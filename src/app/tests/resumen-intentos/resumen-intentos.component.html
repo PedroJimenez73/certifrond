@@ -1,7 +1,8 @@
 <app-breadcrumb [rutas]="[{texto:'Inicio', ruta:'/'},{texto:'Resumen de resultados'}]"></app-breadcrumb>
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso">
-        <div class="card exams" appLoadFade>
+        <app-spinner *ngIf="waitingInit"></app-spinner>
+        <div class="card exams" appLoadFade *ngIf="!waitingInit && intentos !== undefined">
             <div class="header-card">
                 <h1>Resumen de resultados</h1>
             </div>

@@ -33,8 +33,6 @@ export class QuestionsComponent implements OnInit {
 
   intento: any;
   acertadas = 0;
-
-  modal = false;
   
   constructor(private route: ActivatedRoute,
               private testsService: TestsService,
@@ -120,7 +118,6 @@ export class QuestionsComponent implements OnInit {
     } else {
       this.results[this.i] = [this.form.get('answerRadio').value];
     }
-    console.log(this.results[this.i],this.corrects);
     if (String(this.results[this.i]) === String(this.corrects)) {
       this.correctAnswers[this.i] = true;
     } else {
@@ -133,7 +130,6 @@ export class QuestionsComponent implements OnInit {
     this.intentosService.putIntento(this.intentoId, intento)
                             .subscribe((res: any)=>{
                               this.waiting = false;
-                              console.log(res);
                               this.authService.setMensaje(res.mensaje, 'success')
                               this.i += cont;
                               this.answersData = [];
@@ -195,7 +191,6 @@ export class QuestionsComponent implements OnInit {
     } else {
       this.results[this.i] = [this.form.get('answerRadio').value];
     }
-    console.log(this.results[this.i], this.corrects);
     if (String(this.results[this.i]) === String(this.corrects)) {
       this.correctAnswers[this.i] = true;
     } else {
@@ -218,23 +213,7 @@ export class QuestionsComponent implements OnInit {
                             },(err: any)=>{
                               this.waiting = false;
                               console.log(err);
+                              this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');
                             })
-  }
-
-  showModal() {
-    this.modal = true;
-  }
-
-  hideModal() {
-    this.modal = false;
-  }
-
-  getAction(event) {
-    if(event.action) {
-      this.router.navigate(['/tests']);
-      this.hideModal();
-    } else {
-      this.hideModal();
-    }
   }
 }

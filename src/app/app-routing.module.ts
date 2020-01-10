@@ -20,9 +20,9 @@ const routes: Routes = [
     path: 'admin', 
     loadChildren: './admin/admin.module#AdminModule',
     data: {rutas: [{ruta:'/admin', texto:'Inicio'}]},
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
-  // {path:'**', component: LoginComponent}
+  {path:'**', component: LoginComponent}
 ];
 
 @NgModule({

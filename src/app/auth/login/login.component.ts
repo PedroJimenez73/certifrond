@@ -12,7 +12,7 @@ import { AuthInterceptorService } from 'src/app/auth-interceptor.service';
 })
 export class LoginComponent implements OnInit {
 
-  @ViewChild('email', {static: false}) emailRef: ElementRef;
+  // @ViewChild('email', {static: false}) emailRef: ElementRef;
   loginForm: FormGroup;
   usuario: any;
   waiting = false;
@@ -47,9 +47,9 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
-    setTimeout(() => {
-      this.emailRef.nativeElement.focus();
-    },500)
+    // setTimeout(() => {
+    //   this.emailRef.nativeElement.focus();
+    // },500)
   }
 
 

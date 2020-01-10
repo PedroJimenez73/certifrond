@@ -5,12 +5,14 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { RouterModule } from '@angular/router';
 import { SuspensivosPipe } from './suspensivos.pipe';
 import { ModalComponent } from '../tests/modal/modal.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
     LoadFadeDirective,
     BreadcrumbComponent,
     ModalComponent,
+    SpinnerComponent,
     SuspensivosPipe
   ],
   imports: [
@@ -21,6 +23,7 @@ import { ModalComponent } from '../tests/modal/modal.component';
     LoadFadeDirective,
     BreadcrumbComponent,
     ModalComponent,
+    SpinnerComponent,
     SuspensivosPipe
   ]
 })

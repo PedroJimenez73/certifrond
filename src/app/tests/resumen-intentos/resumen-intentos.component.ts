@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IntentosService } from '../intentos.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-resumen-intentos',
@@ -12,8 +13,10 @@ export class ResumenIntentosComponent implements OnInit {
 
   intentos: any;
   examenes = [];
+  waitingInit = true;
 
-  constructor(private intentosService: IntentosService) { }
+  constructor(private intentosService: IntentosService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.loadIntentos()
@@ -33,8 +36,10 @@ export class ResumenIntentosComponent implements OnInit {
                   distinctExams.forEach(elem => {
                     this.examenes.push(JSON.parse(elem))
                   })
+                  this.waitingInit = false;
                 },(err: any)=>{
-                  // this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');  
+                    this.waitingInit = false;
+                    this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');
                 })
   }
 

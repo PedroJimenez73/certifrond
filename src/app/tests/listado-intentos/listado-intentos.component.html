@@ -1,8 +1,8 @@
 <app-breadcrumb [rutas]="rutas"></app-breadcrumb>
 <div class="contenedor fondo-gris">
-    <div class="contenido para-friso" *ngIf="!waiting" >
-        <!-- <app-spinner *ngIf="waiting"></app-spinner> -->
-        <div class="card jumbo" appLoadFade>
+    <div class="contenido para-friso">
+        <app-spinner *ngIf="waitingInit"></app-spinner>
+        <div class="card jumbo" appLoadFade *ngIf="!waitingInit && intentos !== undefined">
             <div class="header-card">
                 <h1>Resultados anteriores</h1>
             </div>
@@ -24,13 +24,13 @@
                     </div>                    
             </div>
         </div>
-        <div class="card side" *ngIf="!waitingInit" appLoadFade>
+        <div class="card side" appLoadFade *ngIf="!waitingInit && intentos !== undefined">
             <div class="header-card">
                 <h1>Stats</h1>
             </div>
             <hr>
             <div class="body-card">
-                <div class="stats" *ngIf="intentos">
+                <div class="stats">
                     <p>Nº INTENTOS <span class="badge info">{{intentos.length}}</span></p> 
                     <p>RESULTADOS <span class="badge success">{{percentPass}} %</span></p> 
                     <p>ÚLTIMO INTENTO <span class="badge warning">{{intentos[0].fecha | date:'dd/MM/yy'}}</span></p> 

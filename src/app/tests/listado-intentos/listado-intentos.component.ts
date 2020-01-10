@@ -16,6 +16,7 @@ export class ListadoIntentosComponent implements OnInit {
   percentPass: number;
   userId: any;
   rutas: any;
+  waitingInit = true;
 
   constructor(private intentosService: IntentosService,
               private route: ActivatedRoute,
@@ -46,8 +47,10 @@ export class ListadoIntentosComponent implements OnInit {
                   } 
                 }
                 this.percentPass = Math.floor((this.passed/this.intentos.length)*100);
+                this.waitingInit = false;
               }, (err: any)=>{
-                console.log(err);
+                this.waitingInit = false;
+                this.authService.setMensaje('Error de conexión con el servidor, inténtelo de nuevo más tarde', 'warning');
               })
   }
 

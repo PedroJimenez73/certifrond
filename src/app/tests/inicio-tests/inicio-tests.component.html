@@ -1,6 +1,6 @@
 <app-breadcrumb [rutas]="[{texto:'Inicio', ruta:'/'}]"></app-breadcrumb>
 <div class="contenedor fondo-gris">
-    <div class="contenido para-friso grid" *ngIf="!waiting" >
+    <div class="contenido para-friso grid" *ngIf="!waiting && exams !== undefined" >
         <div class="card" *ngFor="let exam of exams" appLoadFade>
             <div class="header-card">
                 <h2>{{exam.title}}</h2>

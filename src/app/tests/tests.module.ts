@@ -9,7 +9,6 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { ExamComponent } from './exam/exam.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { PerfilComponent } from './usuarios/perfil/perfil.component';
-import { SpinnerComponent } from './spinner/spinner.component';
 import { ListadoIntentosComponent } from './listado-intentos/listado-intentos.component';
 import { IntentoComponent } from './intento/intento.component';
 import { ResumenIntentosComponent } from './resumen-intentos/resumen-intentos.component';
@@ -52,7 +51,6 @@ const routes: Routes = [
     ExamComponent,
     QuestionsComponent,
     PerfilComponent,
-    SpinnerComponent,
     ListadoIntentosComponent,
     IntentoComponent,
     ResumenIntentosComponent

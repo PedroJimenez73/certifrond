@@ -164,6 +164,11 @@ form.questions {
     &:hover {
         background-color: $gris-claro;
     }
+
+    &.ver:hover {
+        background-color: white;
+        cursor: initial;
+    }
 }
 
 @media (max-width: 540px) {

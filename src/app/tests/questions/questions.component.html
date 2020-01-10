@@ -2,7 +2,7 @@
 <div class="contenedor fondo-gris">
     <div class="contenido para-friso">
         <app-spinner *ngIf="waitingInit"></app-spinner>
-        <div class="card questions" *ngIf="!waitingInit" appLoadFade>
+        <div class="card questions" *ngIf="!waitingInit && exam !== {}" appLoadFade>
             <div class="header-card">
                 <h1>{{exam?.title}}</h1>
                 <div class="answers-data">
@@ -61,15 +61,12 @@
                 </div>
             </div>
             <div class="footer-card" *ngIf="resumen && !waiting">
-                <button class="outline" routerLink="/tests">Volver al inicio</button>
-                <button class="m-l-small" (click)="showModal()">Ver resultados</button>
+                <button class="outline" routerLink="/tests/exam/{{id}}">Volver al inicio</button>
+                <button class="m-l-small" routerLink="/tests/listado-intentos/intento/{{id}}/{{intentoId}}">Ver resultados</button>
             </div>
         </div>
     </div>
 </div>
 <app-modal *ngIf="modal && !resumen" 
            [texto]="'¿Está seguro de abandonar el exámen?'"
-           (action)="getAction($event)"></app-modal>
-<app-modal *ngIf="modal && resumen" 
-           [texto]="'La funcionalidad no está disponible, disculpen las molestias.'"
            (action)="getAction($event)"></app-modal>
